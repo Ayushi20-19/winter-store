@@ -1,0 +1,26 @@
+footer {
+  width: 100%;
+  background-color: var(--primary-color);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  bottom: 0;
+  text-align: center;
+  color: var(--light-bg-color);
+  margin-top: 5rem;
+  padding-top: 2rem;
+}
+.footer-heading {
+  color: var(--white-color);
+}
+.footer-content {
+  width: 70%;
+  margin: auto;
+}
+.footer-links span {
+  margin: 1rem;
+}
+.footer-copyright {
+  margin: 2rem;
+  font-size: 0.7rem;
+}

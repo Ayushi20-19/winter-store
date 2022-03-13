@@ -1,0 +1,15 @@
+@import url("https://fonts.googleapis.com/css2?family=Satisfy&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Karla:wght@300&family=Satisfy&display=swap");
+:root {
+  --light-bg-color: #f9fdff;
+  --primary-color: #00283b;
+  --secondary-color: #006691;
+  --accent-color: #f17b4c;
+  --black-color: #000000;
+  --white-color: #ffffff;
+  --gray-color: #969696;
+  --light-gray-color: #dddddd;
+}
+.App {
+  font-family: "Karla", sans-serif;
+}

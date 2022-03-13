@@ -1,0 +1,26 @@
+.our-story {
+  display: flex;
+  width: 100%;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  margin: 2rem 0rem;
+}
+.title1 {
+  margin-bottom: 2.5rem;
+  font-size: 1.1rem;
+}
+.des {
+  width: 80%;
+  max-width: 950px;
+  margin: auto;
+  font-size: 0.9rem;
+  letter-spacing: 2px;
+  margin-bottom: 1.6rem;
+}
+.brandname {
+  font-family: Satisfy;
+  font-size: 1.5rem;
+  margin-bottom: 1.9rem;
+  color: var(--primary-color);
+}

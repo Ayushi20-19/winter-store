@@ -1,0 +1,40 @@
+.bestseller {
+  margin-top: 5rem;
+}
+.heading-bestseller {
+  text-align: center;
+  margin-bottom: 3.3rem;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+.short-line,
+.shorter-line {
+  height: 2px;
+  background-color: var(--gray-color);
+  margin-bottom: 0.3rem;
+  border: 0;
+}
+.short-line {
+  width: 5rem;
+  margin-top: 0.3rem;
+}
+.shorter-line {
+  width: 3rem;
+}
+.home-tab-title {
+  width: 100%;
+  text-align: center;
+  margin-bottom: 4rem;
+  font-size: 1.2rem;
+  color: var(--gray-color);
+  font-weight: 500;
+}
+.home-tab-title span {
+  margin: 1rem;
+}
+.bestseller-prods-wrapper {
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
+}
