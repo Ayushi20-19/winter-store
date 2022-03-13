@@ -1,0 +1,27 @@
+import React from "react";
+
+import "./Css/ourstory.css";
+const OurStory = () => {
+  return (
+    <div>
+      <section class='our-story'>
+        <div class='title1'>
+          <h1>Welcome to our story</h1>
+        </div>
+        <div class='des'>
+          <p>
+            Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
+            eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim
+            ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut
+            aliquip ex ea commodo consequat.
+          </p>
+        </div>
+        <div class='brandname'>
+          <h3>Winter Store</h3>
+        </div>
+      </section>
+    </div>
+  );
+};
+
+export default OurStory;
