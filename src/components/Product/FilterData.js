@@ -6,7 +6,7 @@ import "../Product/Css/filterdata.css";
 const FilterData = () => {
   const { state, dispatch } = useDataContex();
   // console.log("of filtersssssssssss", state);
-  console.log(state.filters.includeOutOfStock);
+  console.log("from fikter------====", state.categories);
   return (
     <div>
       <aside className='filter-sidebar'>
@@ -28,6 +28,30 @@ const FilterData = () => {
           <hr className='filterhr' />
           <div className='filters'>
             <h1>Category</h1>
+            {state.categories.map((items) => {
+              return (
+                <>
+                  <ul>
+                    <li>
+                      <input
+                        type='checkbox'
+                        checked={items.categoryName}
+                        onChange={() =>
+                          dispatch({
+                            type: "FILTER_BY_CATEGORY",
+                            payload: items.categoryName,
+                          })
+                        }
+                      />{" "}
+                      {items.categoryName}
+                    </li>
+                  </ul>
+                </>
+              );
+            })}
+          </div>
+          {/* <div className='filters'>
+            <h1>Category</h1>
             <ul>
               <li>
                 <input type='checkbox' /> Mens
@@ -39,7 +63,7 @@ const FilterData = () => {
                 <input type='checkbox' /> Children
               </li>
             </ul>
-          </div>
+          </div> */}
           <div className='filters'>
             <h1>Category</h1>
             <ul>
@@ -58,7 +82,18 @@ const FilterData = () => {
                 Include Out of Stock
               </li>
               <li>
-                <input type='checkbox' /> Fast Delivery
+                <input
+                  type='checkbox'
+                  // defaultChecked={true}
+                  checked={state.filters.fastDelivery}
+                  onChange={() =>
+                    dispatch({
+                      type: "FAST_DELIVERY",
+                      payload: state.filters.fastDelivery,
+                    })
+                  }
+                />{" "}
+                Fast Delivery
               </li>
             </ul>
           </div>

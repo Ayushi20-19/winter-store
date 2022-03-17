@@ -19,12 +19,12 @@ const ProductDataProvider = ({ children }) => {
   // const [state, dispatch] = useReducer(DataReducer, DataReducer);
   const initialState = {
     products: [],
+    categories: [],
     sortBy: "",
     filters: {
       filterByCategories: [],
-      filterByBrands: [],
       includeOutOfStock: false,
-      fastDelivery: true,
+      fastDelivery: false,
     },
   };
 
@@ -42,8 +42,22 @@ const ProductDataProvider = ({ children }) => {
       console.log(error);
     }
   };
+  const fetchCategories = async () => {
+    try {
+      await axios.get("/api/categories").then((response) => {
+        console.log("Response from  ategor axios", response);
+        dispatch({
+          type: "GET_CATEGORIES",
+          payload: response.data.categories,
+        });
+      });
+    } catch (error) {
+      console.log(error);
+    }
+  };
   useEffect(() => {
     fetchData();
+    fetchCategories();
   }, []);
   console.log("data", state);
 

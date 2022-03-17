@@ -41,6 +41,8 @@ export const DataReducer = (state, { type, payload }) => {
   switch (type) {
     case "GET_PRODUCTS":
       return { ...state, products: payload };
+    case "GET_CATEGORIES":
+      return { ...state, categories: payload };
     case "SORT": {
       if (payload === "HIGH_TO_LOW") return { ...state, sortBy: "HIGH_TO_LOW" };
       if (payload === "LOW_TO_HIGH") return { ...state, sortBy: "LOW_TO_HIGH" };
@@ -51,13 +53,18 @@ export const DataReducer = (state, { type, payload }) => {
         filters: { ...state.filters, includeOutOfStock: !payload },
       };
     }
-
-    // case 'FILTER_BY_CATEGORIES': {
-    // 	return
-    // }
-    // case 'FILTER_BY_BRANDS': {
-    // 	return
-    // }
+    case "FAST_DELIVERY": {
+      return {
+        ...state,
+        filters: { ...state.filters, fastDelivery: !payload },
+      };
+    }
+    case "FILTER_BY_CATEGORY": {
+      return {
+        ...state,
+        filters: { ...state.filters, filterByCategories: payload },
+      };
+    }
 
     default:
       return state;

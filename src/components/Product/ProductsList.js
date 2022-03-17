@@ -19,7 +19,11 @@ const ProductsList = () => {
   // let filterData = [...state];
 
   const getSortedDataa = getSortedData(state, state.products);
-  const getFilterdeDataa = getFilterdeData(state, getSortedDataa);
+  const getFilterdeDataa = getFilterdeData(
+    getSortedDataa,
+    state.filters.includeOutOfStock,
+    state.filters.fastDelivery
+  );
   console.log("sorted data", getSortedDataa);
   console.log("filterd data --", getFilterdeDataa);
 
