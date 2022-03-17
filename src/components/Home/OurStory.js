@@ -4,11 +4,11 @@ import "./Css/ourstory.css";
 const OurStory = () => {
   return (
     <div>
-      <section class='our-story'>
-        <div class='title1'>
+      <section className='our-story'>
+        <div className='title1'>
           <h1>Welcome to our story</h1>
         </div>
-        <div class='des'>
+        <div className='des'>
           <p>
             Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
             eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim
@@ -16,7 +16,7 @@ const OurStory = () => {
             aliquip ex ea commodo consequat.
           </p>
         </div>
-        <div class='brandname'>
+        <div className='brandname'>
           <h3>Winter Store</h3>
         </div>
       </section>
