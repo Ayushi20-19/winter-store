@@ -32,7 +32,7 @@ export const products = [
   },
   {
     _id: uuid(),
-    title: "",
+    title: "Random stuff",
     description: "This is the Description",
     price: "70",
     categoryName: "gift",

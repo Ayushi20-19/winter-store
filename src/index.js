@@ -4,15 +4,18 @@ import "./index.css";
 import App from "./App";
 import { makeServer } from "./server";
 import { ProductDataProvider } from "./contex/data-contex";
+import { BrowserRouter as Router } from "react-router-dom";
 
 // Call make Server
 makeServer();
 
 ReactDOM.render(
   <React.StrictMode>
-    <ProductDataProvider>
-      <App />
-    </ProductDataProvider>
+    <Router>
+      <ProductDataProvider>
+        <App />
+      </ProductDataProvider>
+    </Router>
   </React.StrictMode>,
   document.getElementById("root")
 );

@@ -13,7 +13,6 @@ const ProductsList = () => {
   );
   const priceRange = getPriceRangeData(filteredData, state.priceRange);
 
-  console.log(priceRange);
   return (
     <div>
       <section className='main-prod-section'>

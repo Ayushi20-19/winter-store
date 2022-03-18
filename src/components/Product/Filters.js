@@ -16,13 +16,13 @@ const getSortedData = (state, data) => {
 };
 
 const getFilteredData = (data, includeOutOfStock, fastDelivery) => {
-  var filteredData = [...data];
+  let filteredData = [...data];
   if (includeOutOfStock && !fastDelivery) {
-    filteredData = [...filteredData].filter((items) => items.inStock);
+    filteredData = filteredData.filter((items) => items.inStock);
   } else if (fastDelivery && !includeOutOfStock) {
-    filteredData = [...filteredData].filter((items) => items.fastDelivery);
+    filteredData = filteredData.filter((items) => items.fastDelivery);
   } else if (fastDelivery && includeOutOfStock) {
-    filteredData = [...filteredData]
+    filteredData = filteredData
       .filter((items) => items.inStock)
       .filter((items) => items.fastDelivery);
   }
@@ -30,15 +30,12 @@ const getFilteredData = (data, includeOutOfStock, fastDelivery) => {
 };
 
 const getPriceRangeData = (data, priceRange) => {
-  console.log(data);
   let filteredData = [...data];
-  console.log(...filteredData);
   if (priceRange > 0) {
-    filteredData = [...filteredData].filter(
+    filteredData = filteredData.filter(
       (items) => Number(items.price) <= Number(priceRange)
     );
   }
-
   return filteredData;
 };
 export { getSortedData, getFilteredData, getPriceRangeData };

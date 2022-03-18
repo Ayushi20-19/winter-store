@@ -7,11 +7,9 @@ const ProductListingPage = () => {
     <div>
       <div className='main-section'>
         <div className='filter'>
-          {" "}
           <FilterData />
         </div>
         <div className='products'>
-          {" "}
           <ProductsList />
         </div>
       </div>
