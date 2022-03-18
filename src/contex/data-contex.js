@@ -5,18 +5,8 @@ import { DataReducer } from "../reducer/DataReducer";
 const ProductData = createContext();
 
 const ProductDataProvider = ({ children }) => {
-  // const [productData, setProductData] = useState();
-  // const fetchData = async () => {
-  //   await axios.get("/api/products").then((response) => {
-  //     //   console.log(response.data.products),
-  //     setProductData(response.data.products);
-  //   });
-  // };
-  // useEffect(() => {
-  //   fetchData();
-  // }, []);
-  console.warn("jdbkhs");
-  // const [state, dispatch] = useReducer(DataReducer, DataReducer);
+  console.warn("---from data contex---");
+
   const initialState = {
     products: [],
     categories: [],
@@ -32,7 +22,6 @@ const ProductDataProvider = ({ children }) => {
   const fetchData = async () => {
     try {
       await axios.get("/api/products").then((response) => {
-        // console.log(response.data.products),
         dispatch({
           type: "GET_PRODUCTS",
           payload: response.data.products,
@@ -45,7 +34,6 @@ const ProductDataProvider = ({ children }) => {
   const fetchCategories = async () => {
     try {
       await axios.get("/api/categories").then((response) => {
-        console.log("Response from  ategor axios", response);
         dispatch({
           type: "GET_CATEGORIES",
           payload: response.data.categories,
@@ -59,7 +47,7 @@ const ProductDataProvider = ({ children }) => {
     fetchData();
     fetchCategories();
   }, []);
-  console.log("data", state);
+  // console.log("data", state);
 
   return (
     <ProductData.Provider value={{ state, dispatch }}>

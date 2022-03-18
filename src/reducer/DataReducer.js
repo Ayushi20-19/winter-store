@@ -1,41 +1,3 @@
-// const reducer = (state, action) => {
-//     console.log(state, action);
-//     switch (action.type) {
-//       case "LOW_TO_HIGH":
-//         return {
-//           ...state,
-//           filterData: [...state.filterData].sort((a, b) => {
-//             return a.price - b.price;
-//           }),
-//         };
-//       case "HIGH_TO_LOW":
-//         //console.log(action.payload);
-//         return {
-//           ...state,
-//           filterData: [...state.filterData].sort((a, b) => {
-//             return b.price - a.price;
-//           }),
-//         };
-//       case "INCLUDE_OUT_OF_STOCK":
-//         console.log(action.payload);
-//         return {
-//           ...state,
-//           filterData: [...state.filterData].filter(
-//             (data) => data.inStock === false
-//           ),
-//         };
-//       case "FAST_DELIVERY":
-//         console.log(action.payload);
-//         return {
-//           ...state,
-//           filterData: [...state.filterData].filter(
-//             (data) => data.fastDelivery === true
-//           ),
-//         };
-//       default:
-//         return state;
-//     }
-//   };
 export const DataReducer = (state, { type, payload }) => {
   console.log(state, type, payload);
   switch (type) {
@@ -57,12 +19,6 @@ export const DataReducer = (state, { type, payload }) => {
       return {
         ...state,
         filters: { ...state.filters, fastDelivery: !payload },
-      };
-    }
-    case "FILTER_BY_CATEGORY": {
-      return {
-        ...state,
-        filters: { ...state.filters, filterByCategories: payload },
       };
     }
 

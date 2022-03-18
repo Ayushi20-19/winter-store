@@ -1,41 +1,28 @@
 import React from "react";
-import { useState, useReducer } from "react";
 import "../Product/Css/productlist.css";
-// import axios from "axios";
 import { useDataContex } from "../../contex/data-contex";
-import { getSortedData, getFilterdeData } from "./Filters";
+import { getSortedData, getFilteredData } from "./Filters";
 
 const ProductsList = () => {
-  // const fetchData = async () => {
-  //   await axios.get("/api/products").then((response) => {
-  //     console.log(response.data.products);
-  //   });
-  // };
-  // fetchData();
   const { state } = useDataContex();
-  //console.log(data);
-
-  // const [state, dispatch] = useReducer(reducer, { filterData: data });
-  // let filterData = [...state];
-
-  const getSortedDataa = getSortedData(state, state.products);
-  const getFilterdeDataa = getFilterdeData(
-    getSortedDataa,
+  const sortedData = getSortedData(state, state.products);
+  const filteredData = getFilteredData(
+    sortedData,
     state.filters.includeOutOfStock,
     state.filters.fastDelivery
   );
-  console.log("sorted data", getSortedDataa);
-  console.log("filterd data --", getFilterdeDataa);
+  // console.log("sorted data", sortedData);
+  // console.log("filterd data --", filterdeData);
 
   return (
     <div>
       <section className='main-prod-section'>
         <div>
-          <h1>{getFilterdeDataa.length} items</h1>
+          <h1>{filteredData.length} items</h1>
         </div>
         <div className=' flex-wrap justify-content-evenly'>
-          {getFilterdeDataa
-            ? getFilterdeDataa.map((items) => {
+          {filteredData
+            ? filteredData.map((items) => {
                 return (
                   <div className='card-wrapper' key={items.id}>
                     <div className='element'>

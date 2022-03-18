@@ -1,12 +1,10 @@
 import React from "react";
-import { useEffect } from "react/cjs/react.production.min";
 import { useDataContex } from "../../contex/data-contex";
 import "../Product/Css/filterdata.css";
 
 const FilterData = () => {
   const { state, dispatch } = useDataContex();
-  // console.log("of filtersssssssssss", state);
-  console.log("from fikter------====", state.categories);
+
   return (
     <div>
       <aside className='filter-sidebar'>
@@ -32,17 +30,17 @@ const FilterData = () => {
               return (
                 <>
                   <ul>
-                    <li>
+                    <li key={items.id}>
                       <input
                         type='checkbox'
-                        checked={items.categoryName}
+                        // checked={items.categoryName}
                         onChange={() =>
                           dispatch({
                             type: "FILTER_BY_CATEGORY",
                             payload: items.categoryName,
                           })
                         }
-                      />{" "}
+                      />
                       {items.categoryName}
                     </li>
                   </ul>
@@ -50,27 +48,13 @@ const FilterData = () => {
               );
             })}
           </div>
-          {/* <div className='filters'>
-            <h1>Category</h1>
-            <ul>
-              <li>
-                <input type='checkbox' /> Mens
-              </li>
-              <li>
-                <input type='checkbox' /> Womens
-              </li>
-              <li>
-                <input type='checkbox' /> Children
-              </li>
-            </ul>
-          </div> */}
+
           <div className='filters'>
-            <h1>Category</h1>
+            <h1>Type</h1>
             <ul>
               <li>
                 <input
                   type='checkbox'
-                  // defaultChecked={true}
                   checked={state.filters.includeOutOfStock}
                   onChange={() =>
                     dispatch({
@@ -84,7 +68,6 @@ const FilterData = () => {
               <li>
                 <input
                   type='checkbox'
-                  // defaultChecked={true}
                   checked={state.filters.fastDelivery}
                   onChange={() =>
                     dispatch({
