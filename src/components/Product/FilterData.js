@@ -8,8 +8,17 @@ const FilterData = () => {
     <div>
       <aside className='filter-sidebar'>
         <div className='sidebar-content'>
-          <div className='filters'>
+          <div className='filters flex width-100 '>
             <h1 className='filter-heading'>Filters</h1>
+            <button
+              className='link-btn'
+              onClick={() =>
+                dispatch({
+                  type: "CLEAR_FILTER",
+                })
+              }>
+              Clear Fliter
+            </button>
           </div>
           <hr className='filterhr' />
           <div className='filters'>
@@ -119,6 +128,7 @@ const FilterData = () => {
                 <input
                   type='radio'
                   name='sortby'
+                  checked={state.sortBy === "LOW_TO_HIGH"}
                   onClick={() =>
                     dispatch({
                       type: "SORT",
@@ -132,6 +142,7 @@ const FilterData = () => {
                 <input
                   type='radio'
                   name='sortby'
+                  checked={state.sortBy === "HIGH_TO_LOW"}
                   onClick={() =>
                     dispatch({
                       type: "SORT",

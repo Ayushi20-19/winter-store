@@ -29,6 +29,18 @@ export const DataReducer = (state, { type, payload }) => {
         priceRange: payload,
       };
 
+    case "CLEAR_FILTER":
+      return {
+        ...state,
+        priceRange: "",
+        sortBy: "",
+        filters: {
+          filterByCategories: [],
+          includeOutOfStock: false,
+          fastDelivery: false,
+        },
+      };
+
     default:
       return state;
   }
