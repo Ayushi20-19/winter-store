@@ -12,8 +12,7 @@ const ProductsList = () => {
     state.filters.fastDelivery
   );
   const priceRange = getPriceRangeData(filteredData, state.priceRange);
-  // console.log("sorted data", sortedData);
-  // console.log("filterd data --", filterdeData);
+
   console.log(priceRange);
   return (
     <div>

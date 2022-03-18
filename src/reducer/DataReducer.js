@@ -1,5 +1,4 @@
 export const DataReducer = (state, { type, payload }) => {
-  console.log(state, type, payload);
   switch (type) {
     case "GET_PRODUCTS":
       return { ...state, products: payload };

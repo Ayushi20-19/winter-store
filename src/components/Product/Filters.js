@@ -38,7 +38,7 @@ const getPriceRangeData = (data, priceRange) => {
       (items) => Number(items.price) <= Number(priceRange)
     );
   }
-  //console.log(filteredData);
+
   return filteredData;
 };
 export { getSortedData, getFilteredData, getPriceRangeData };

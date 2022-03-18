@@ -5,8 +5,6 @@ import { DataReducer } from "../reducer/DataReducer";
 const ProductData = createContext();
 
 const ProductDataProvider = ({ children }) => {
-  console.warn("---from data contex---");
-
   const initialState = {
     products: [],
     categories: [],
@@ -20,6 +18,7 @@ const ProductDataProvider = ({ children }) => {
   };
 
   const [state, dispatch] = useReducer(DataReducer, initialState);
+
   const fetchData = async () => {
     try {
       await axios.get("/api/products").then((response) => {
@@ -48,7 +47,6 @@ const ProductDataProvider = ({ children }) => {
     fetchData();
     fetchCategories();
   }, []);
-  // console.log("data", state);
 
   return (
     <ProductData.Provider value={{ state, dispatch }}>

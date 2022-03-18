@@ -5,10 +5,7 @@ import "../Product/Css/filterdata.css";
 
 const FilterData = () => {
   const { state, dispatch } = useDataContex();
-  const getRange = (e) => {
-    console.warn("range", e.target.value);
-    dispatch({ type: "PRICE_RANGE", payload: e.target.value });
-  };
+
   return (
     <div>
       <aside className='filter-sidebar'>
@@ -28,11 +25,16 @@ const FilterData = () => {
               className='slider'
               min='100'
               max='1000'
-              onChange={(e) => getRange(e)}
+              onChange={(e) =>
+                dispatch({
+                  type: "PRICE_RANGE",
+                  payload: e.target.value,
+                })
+              }
             />
           </div>
           <hr className='filterhr' />
-          <div className='filters'>
+          {/* <div className='filters'>
             <h1>Category</h1>
             {state.categories.map((items) => {
               return (
@@ -55,7 +57,7 @@ const FilterData = () => {
                 </>
               );
             })}
-          </div>
+          </div> */}
 
           <div className='filters'>
             <h1>Type</h1>
@@ -89,7 +91,7 @@ const FilterData = () => {
             </ul>
           </div>
           <hr className='filterhr' />
-          <div className='filters'>
+          {/* <div className='filters'>
             <h1>Rating</h1>
             <ul>
               <li>
@@ -108,8 +110,9 @@ const FilterData = () => {
                 <input type='radio' name='rating' /> 1 start
               </li>
             </ul>
-          </div>
-          <hr className='filterhr' />
+          </div> 
+          <hr className='filterhr' />*/}
+
           <div className='filters'>
             <h1>SortBy</h1>
             <ul>
