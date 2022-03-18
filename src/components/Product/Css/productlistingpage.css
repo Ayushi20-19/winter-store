@@ -1,0 +1,16 @@
+.main-section {
+  width: 100%;
+  display: flex;
+  height: auto;
+}
+.filter {
+  width: 25%;
+}
+.products {
+  width: 72%;
+}
+@media only screen and (max-width: 800px) {
+  .filter {
+    display: none;
+  }
+}

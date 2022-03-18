@@ -4,21 +4,21 @@ import "./Css/bestselling.css";
 const BestSelling = () => {
   return (
     <div>
-      <section class='bestseller'>
-        <div class='heading-bestseller'>
+      <section className='bestseller'>
+        <div className='heading-bestseller'>
           <h1>Bestseller Products</h1>
-          <hr class='short-line' />
-          <hr class='shorter-line' />
+          <hr className='short-line' />
+          <hr className='shorter-line' />
         </div>
-        <div class='bestseller-container'>
-          <div class='home-tab-title'>
+        <div className='bestseller-container'>
+          <div className='home-tab-title'>
             <span>Iteme one</span>
             <span>|</span> <span>Iteme one</span>
             <span>|</span>
             <span>Iteme one</span>
           </div>
-          <div class='bestseller-prods'>
-            <div class='bestseller-prods-wrapper'>
+          <div className='bestseller-prods'>
+            <div className='bestseller-prods-wrapper'>
               <ProductCard />
             </div>
           </div>

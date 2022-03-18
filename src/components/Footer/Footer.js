@@ -5,17 +5,17 @@ const Footer = () => {
     <div>
       {" "}
       <footer>
-        <div class='footer-content'>
-          <div class='brandname'>
-            <h3 class='footer-heading'>Winter Store</h3>
+        <div className='footer-content'>
+          <div className='brandname'>
+            <h3 className='footer-heading'>Winter Store</h3>
           </div>
-          <div class='footer-links'>
+          <div className='footer-links'>
             <span>About Us</span>
             <span>Privacy Policy</span>
             <span>Blogs</span>
             <span>Contact Us</span>
           </div>
-          <div class='footer-copyright'>
+          <div className='footer-copyright'>
             Copyright © 2022 Winter Store. All Rights Reserved
           </div>
         </div>
