@@ -4,7 +4,6 @@ import "../Product/Css/filterdata.css";
 
 const FilterData = () => {
   const { state, dispatch } = useDataContex();
-
   return (
     <div>
       <aside className='filter-sidebar'>
@@ -24,6 +23,7 @@ const FilterData = () => {
               className='slider'
               min='100'
               max='1000'
+              value={state.priceRange === "" ? 1000 : state.priceRange}
               onChange={(e) =>
                 dispatch({
                   type: "PRICE_RANGE",
