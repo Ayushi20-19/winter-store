@@ -10,6 +10,7 @@ const ProductDataProvider = ({ children }) => {
   const initialState = {
     products: [],
     categories: [],
+    priceRange: "",
     sortBy: "",
     filters: {
       filterByCategories: [],

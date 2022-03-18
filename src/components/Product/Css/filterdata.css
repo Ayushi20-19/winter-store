@@ -28,7 +28,9 @@
 .price-range {
   display: flex;
   margin-top: 1rem;
-  justify-content: space-around;
+}
+.price-range span:nth-child(2) {
+  margin-left: auto;
 }
 .filterhr {
   width: 100%;

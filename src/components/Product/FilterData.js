@@ -1,10 +1,14 @@
+import { toHaveValue } from "@testing-library/jest-dom/dist/matchers";
 import React from "react";
 import { useDataContex } from "../../contex/data-contex";
 import "../Product/Css/filterdata.css";
 
 const FilterData = () => {
   const { state, dispatch } = useDataContex();
-
+  const getRange = (e) => {
+    console.warn("range", e.target.value);
+    dispatch({ type: "PRICE_RANGE", payload: e.target.value });
+  };
   return (
     <div>
       <aside className='filter-sidebar'>
@@ -15,13 +19,17 @@ const FilterData = () => {
           <hr className='filterhr' />
           <div className='filters'>
             <h1>Price</h1>
-            <div className='price-range'>
-              <span>250</span>
-              <span>500</span>
-              <span>750</span>
+            <div className=' price-range'>
+              <span>100</span>
               <span>1000</span>
             </div>
-            <input type='range' className='slider' min='100' max='1000' />
+            <input
+              type='range'
+              className='slider'
+              min='100'
+              max='1000'
+              onChange={(e) => getRange(e)}
+            />
           </div>
           <hr className='filterhr' />
           <div className='filters'>

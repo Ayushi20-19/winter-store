@@ -1,7 +1,7 @@
 import React from "react";
 import "../Product/Css/productlist.css";
 import { useDataContex } from "../../contex/data-contex";
-import { getSortedData, getFilteredData } from "./Filters";
+import { getSortedData, getFilteredData, getPriceRangeData } from "./Filters";
 
 const ProductsList = () => {
   const { state } = useDataContex();
@@ -11,18 +11,19 @@ const ProductsList = () => {
     state.filters.includeOutOfStock,
     state.filters.fastDelivery
   );
+  const priceRange = getPriceRangeData(filteredData, state.priceRange);
   // console.log("sorted data", sortedData);
   // console.log("filterd data --", filterdeData);
-
+  console.log(priceRange);
   return (
     <div>
       <section className='main-prod-section'>
         <div>
-          <h1>{filteredData.length} items</h1>
+          <h1>{priceRange.length} items</h1>
         </div>
         <div className=' flex-wrap justify-content-evenly'>
-          {filteredData
-            ? filteredData.map((items) => {
+          {priceRange
+            ? priceRange.map((items) => {
                 return (
                   <div className='card-wrapper' key={items.id}>
                     <div className='element'>

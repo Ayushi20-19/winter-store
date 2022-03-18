@@ -21,6 +21,12 @@ export const DataReducer = (state, { type, payload }) => {
         filters: { ...state.filters, fastDelivery: !payload },
       };
     }
+    case "PRICE_RANGE": {
+      return {
+        ...state,
+        priceRange: payload,
+      };
+    }
 
     default:
       return state;

@@ -29,4 +29,16 @@ const getFilteredData = (data, includeOutOfStock, fastDelivery) => {
   return filteredData;
 };
 
-export { getSortedData, getFilteredData };
+const getPriceRangeData = (data, priceRange) => {
+  console.log(data);
+  let filteredData = [...data];
+  console.log(...filteredData);
+  if (priceRange > 0) {
+    filteredData = [...filteredData].filter(
+      (items) => Number(items.price) <= Number(priceRange)
+    );
+  }
+  //console.log(filteredData);
+  return filteredData;
+};
+export { getSortedData, getFilteredData, getPriceRangeData };

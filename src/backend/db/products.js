@@ -10,7 +10,7 @@ export const products = [
     _id: uuid(),
     title: "Designed mug",
     description: "This is the Description",
-    price: "5000",
+    price: "500",
     categoryName: "gift",
     productImg:
       "https://images.unsplash.com/photo-1554568218-0f1715e72254?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxjb2xsZWN0aW9uLXBhZ2V8NHw0NTg1MDAxfHxlbnwwfHx8fA%3D%3D&auto=format&fit=crop&w=400&q=60",
@@ -22,7 +22,7 @@ export const products = [
     _id: uuid(),
     title: "Theme Party ",
     description: "This is the Description",
-    price: "2000",
+    price: "200",
     categoryName: "dress",
     productImg:
       "https://images.unsplash.com/photo-1554568218-ffd1e72a2151?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxjb2xsZWN0aW9uLXBhZ2V8OHw0NTg1MDAxfHxlbnwwfHx8fA%3D%3D&auto=format&fit=crop&w=400&q=60",
@@ -34,7 +34,7 @@ export const products = [
     _id: uuid(),
     title: "",
     description: "This is the Description",
-    price: "5000",
+    price: "70",
     categoryName: "gift",
     productImg:
       "https://images.unsplash.com/photo-1554568218-0f1715e72254?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxjb2xsZWN0aW9uLXBhZ2V8NHw0NTg1MDAxfHxlbnwwfHx8fA%3D%3D&auto=format&fit=crop&w=400&q=60",
@@ -46,7 +46,7 @@ export const products = [
     _id: uuid(),
     title: "Random stuff",
     description: "This is the Description",
-    price: "5000",
+    price: "1000",
     categoryName: "gift",
     productImg:
       "https://images.unsplash.com/photo-1554568218-0f1715e72254?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxjb2xsZWN0aW9uLXBhZ2V8NHw0NTg1MDAxfHxlbnwwfHx8fA%3D%3D&auto=format&fit=crop&w=400&q=60",
@@ -58,7 +58,7 @@ export const products = [
     _id: uuid(),
     title: "Designed mug",
     description: "This is the Description",
-    price: "5000",
+    price: "700",
     categoryName: "gift",
     productImg:
       "https://images.unsplash.com/photo-1554568218-0f1715e72254?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxjb2xsZWN0aW9uLXBhZ2V8NHw0NTg1MDAxfHxlbnwwfHx8fA%3D%3D&auto=format&fit=crop&w=400&q=60",
@@ -70,7 +70,7 @@ export const products = [
     _id: uuid(),
     title: "Theme Party ",
     description: "This is the Description",
-    price: "2000",
+    price: "800",
     categoryName: "dress",
     productImg:
       "https://images.unsplash.com/photo-1554568218-ffd1e72a2151?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxjb2xsZWN0aW9uLXBhZ2V8OHw0NTg1MDAxfHxlbnwwfHx8fA%3D%3D&auto=format&fit=crop&w=400&q=60",
