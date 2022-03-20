@@ -1,6 +1,15 @@
 import React from "react";
-import { NavLink } from "react-router-dom";
+import { NavLink, useNavigate } from "react-router-dom";
+
 const Navbar = () => {
+  const navigate = useNavigate();
+  let authToken = localStorage.getItem("token");
+  const clearTokenFromStorage = () => {
+    localStorage.removeItem("token");
+    localStorage.removeItem("userDetail");
+    navigate("/");
+  };
+
   return (
     <div>
       <div className='navbar'>
@@ -30,21 +39,32 @@ const Navbar = () => {
               </NavLink>
             </li>
             <li>
-              <NavLink
-                to='/auth'
-                style={({ isActive }) => {
-                  return {
-                    borderBottom: isActive ? "2px solid #00283b" : "0px",
-                  };
-                }}>
-                Login/SignUp
-              </NavLink>
+              {authToken ? (
+                <NavLink
+                  to='/signup'
+                  onClick={clearTokenFromStorage}
+                  style={({ isActive }) => {
+                    return {
+                      borderBottom: isActive ? "2px solid #00283b" : "0px",
+                    };
+                  }}>
+                  Logout
+                </NavLink>
+              ) : (
+                <NavLink
+                  to='/signup'
+                  style={({ isActive }) => {
+                    return {
+                      borderBottom: isActive ? "2px solid #00283b" : "0px",
+                    };
+                  }}>
+                  Signup
+                </NavLink>
+              )}
             </li>
           </ul>
         </nav>
-        {/* <a className='ham-burger' onClick='sideBarShow()'>
-          <i className='fa fa-bars'></i>
-        </a> */}
+
         <sidebar className='navsidebar'>
           <span>
             <NavLink to='/home'>Home</NavLink>
