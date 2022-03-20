@@ -3,7 +3,6 @@ import { NavLink, useNavigate } from "react-router-dom";
 
 const Navbar = () => {
   let authToken = localStorage.getItem("token");
-
   const clearTokenFromStorage = () => {
     localStorage.removeItem("token");
     localStorage.removeItem("userDetail");
