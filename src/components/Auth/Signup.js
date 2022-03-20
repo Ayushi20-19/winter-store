@@ -35,7 +35,7 @@ const Signup = () => {
         });
         localStorage.setItem("token", response.data.encodedToken);
         localStorage.setItem("user", JSON.stringify(response.data));
-        navigateHome("/home");
+        navigateHome("/");
       } catch (err) {
         console.warn(err);
       }
