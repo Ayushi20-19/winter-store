@@ -17,7 +17,7 @@ const AuthProvider = ({ children }) => {
     </AuthContex.Provider>
   );
 };
-//console.log(authState);
+
 //custom hook
 const useAuthContex = () => useContext(AuthContex);
 export { AuthProvider, useAuthContex };

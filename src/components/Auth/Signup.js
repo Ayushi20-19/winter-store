@@ -1,11 +1,13 @@
 import axios from "axios";
 import React from "react";
 import { useState } from "react";
+import { useNavigate } from "react-router-dom";
 import { useAuthContex } from "../../contex/auth-contex";
 import "./auth.css";
 
 const Signup = () => {
-  const { authState, authDispatch } = useAuthContex();
+  const navigateHome = useNavigate();
+  const { authDispatch } = useAuthContex();
   const [userDetail, setUserDetail] = useState({
     name: "",
     email: "",
@@ -24,7 +26,6 @@ const Signup = () => {
     if (userDetail.password === userDetail.confirmPassword) {
       try {
         const response = await axios.post(`/api/auth/signup`, userDetail);
-        console.log("res", response);
         authDispatch({
           type: "SIGN_UP",
           payload: {
@@ -34,12 +35,13 @@ const Signup = () => {
         });
         localStorage.setItem("token", response.data.encodedToken);
         localStorage.setItem("user", JSON.stringify(response.data));
+        navigateHome("/home");
       } catch (err) {
         console.warn(err);
       }
     }
   };
-  console.log(authState);
+
   return (
     <div>
       <section>

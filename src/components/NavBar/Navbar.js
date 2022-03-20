@@ -1,19 +1,16 @@
 import React from "react";
 import { NavLink, useNavigate } from "react-router-dom";
-import { useAuthContex } from "../../contex/auth-contex";
 
 const Navbar = () => {
-  const { authState, authDispatch } = useAuthContex();
   const navigate = useNavigate();
-  // console.log("authstate", authState.token);
   let authToken = localStorage.getItem("token");
+
   const clearTokenFromStorage = () => {
     localStorage.removeItem("token");
     localStorage.removeItem("userDetail");
-    console.log("ndnkndkn");
     navigate("/");
   };
-  console.log(authToken);
+
   return (
     <div>
       <div className='navbar'>
@@ -68,9 +65,7 @@ const Navbar = () => {
             </li>
           </ul>
         </nav>
-        {/* <a className='ham-burger' onClick='sideBarShow()'>
-          <i className='fa fa-bars'></i>
-        </a> */}
+
         <sidebar className='navsidebar'>
           <span>
             <NavLink to='/home'>Home</NavLink>
