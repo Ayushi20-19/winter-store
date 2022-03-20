@@ -5,8 +5,8 @@ import Signup from "../components/Auth/Signup";
 const Authpage = () => {
   return (
     <div>
-      <Login />
-      {/* <Signup /> */}
+      {/* <Login /> */}
+      <Signup />
     </div>
   );
 };

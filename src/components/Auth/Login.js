@@ -4,15 +4,15 @@ const Login = () => {
   return (
     <div>
       <section>
-        <div class='auth-wrapper'>
-          <div class='auth-card-wrapper'>
-            <div class='auth-card'>
-              <div class='heading-auth'>
+        <div className='auth-wrapper'>
+          <div className='auth-card-wrapper'>
+            <div className='auth-card'>
+              <div className='heading-auth'>
                 <h1>Login in to Winter</h1>
               </div>
-              <hr class='auth-card-hr' />
+              <hr className='auth-card-hr' />
               <div>
-                <form action='' class='auth-content'>
+                <form action='' className='auth-content'>
                   <label for='email'>
                     <h3>Enter Your Email</h3>
                   </label>
@@ -33,11 +33,11 @@ const Login = () => {
                     {" "}
                     <p>Forget Password</p>
                   </a>
-                  <button class='btn primary-outline'>
+                  <button className='btn primary-outline'>
                     Login With Test Credentials
                   </button>
-                  <button class='btn primary'>Login</button>
-                  <hr class='auth-card-hr' />
+                  <button className='btn primary'>Login</button>
+                  <hr className='auth-card-hr' />
                 </form>
                 <p>
                   Not a user yet? <a href='#'>Create your account</a>

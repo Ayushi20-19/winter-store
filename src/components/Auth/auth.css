@@ -20,10 +20,10 @@
   flex-direction: column;
 }
 .auth-content input {
-  margin: 0.3rem 0 1rem 0;
+  margin: -0.5rem 0 1rem 0;
   padding: 1rem 0.8rem;
 }
-.btn {
+.submit-btn {
   border-radius: 0;
   margin: 0.9rem 0 0 0;
   font-size: 1.2rem;
@@ -33,7 +33,7 @@
   margin: 1rem 0;
 }
 
-@media only screen and (max-width: 700px) {
+@media only screen and (max-width: 1000px) {
   .auth-card-wrapper {
     width: 70%;
   }

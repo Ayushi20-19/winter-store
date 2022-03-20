@@ -1,6 +1,19 @@
 import React from "react";
-import { NavLink } from "react-router-dom";
+import { NavLink, useNavigate } from "react-router-dom";
+import { useAuthContex } from "../../contex/auth-contex";
+
 const Navbar = () => {
+  const { authState, authDispatch } = useAuthContex();
+  const navigate = useNavigate();
+  // console.log("authstate", authState.token);
+  let authToken = localStorage.getItem("token");
+  const clearTokenFromStorage = () => {
+    localStorage.removeItem("token");
+    localStorage.removeItem("userDetail");
+    console.log("ndnkndkn");
+    navigate("/");
+  };
+  console.log(authToken);
   return (
     <div>
       <div className='navbar'>
@@ -30,15 +43,28 @@ const Navbar = () => {
               </NavLink>
             </li>
             <li>
-              <NavLink
-                to='/auth'
-                style={({ isActive }) => {
-                  return {
-                    borderBottom: isActive ? "2px solid #00283b" : "0px",
-                  };
-                }}>
-                Login/SignUp
-              </NavLink>
+              {authToken ? (
+                <NavLink
+                  to='/signup'
+                  onClick={clearTokenFromStorage}
+                  style={({ isActive }) => {
+                    return {
+                      borderBottom: isActive ? "2px solid #00283b" : "0px",
+                    };
+                  }}>
+                  Logout
+                </NavLink>
+              ) : (
+                <NavLink
+                  to='/signup'
+                  style={({ isActive }) => {
+                    return {
+                      borderBottom: isActive ? "2px solid #00283b" : "0px",
+                    };
+                  }}>
+                  Signup
+                </NavLink>
+              )}
             </li>
           </ul>
         </nav>
