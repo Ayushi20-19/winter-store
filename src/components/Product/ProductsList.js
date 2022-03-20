@@ -41,7 +41,7 @@ const ProductsList = () => {
                   </div>
                 );
               })
-            : "loading......"}{" "}
+            : "loading......"}
         </div>
       </section>
     </div>

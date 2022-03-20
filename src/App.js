@@ -6,6 +6,7 @@ import Navbar from "./components/NavBar/Navbar";
 import Footer from "./components/Footer/Footer";
 import Signup from "./components/Auth/Signup";
 import Mockman from "mockman-js";
+import Login from "./components/Auth/Login";
 function App() {
   return (
     <>
@@ -15,6 +16,7 @@ function App() {
           <Route path='/' element={<HomePage />} />
           <Route path='/productListing' element={<ProductListingPage />} />
           <Route path='/signup' element={<Signup />} />
+          <Route path='/login' element={<Login />} />
           <Route path='/mockman' element={<Mockman />}></Route>
         </Routes>
         <Footer />

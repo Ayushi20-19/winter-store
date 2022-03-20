@@ -1,13 +1,18 @@
 import React from "react";
 import { NavLink, useNavigate } from "react-router-dom";
+import { useAuthContex } from "../../contex/auth-contex";
 
 const Navbar = () => {
   const navigate = useNavigate();
+  const { authDispatch } = useAuthContex();
   let authToken = localStorage.getItem("token");
   const clearTokenFromStorage = () => {
     localStorage.removeItem("token");
-    localStorage.removeItem("userDetail");
+    localStorage.removeItem("user");
     navigate("/");
+    authDispatch({
+      type: "LOG_OUT",
+    });
   };
 
   return (
@@ -41,7 +46,7 @@ const Navbar = () => {
             <li>
               {authToken ? (
                 <NavLink
-                  to='/signup'
+                  to='/login'
                   onClick={clearTokenFromStorage}
                   style={({ isActive }) => {
                     return {
@@ -52,13 +57,13 @@ const Navbar = () => {
                 </NavLink>
               ) : (
                 <NavLink
-                  to='/signup'
+                  to='/login'
                   style={({ isActive }) => {
                     return {
                       borderBottom: isActive ? "2px solid #00283b" : "0px",
                     };
                   }}>
-                  Signup
+                  Login
                 </NavLink>
               )}
             </li>

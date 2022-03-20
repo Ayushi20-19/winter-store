@@ -93,7 +93,7 @@ const FilterData = () => {
                       payload: state.filters.fastDelivery,
                     })
                   }
-                />{" "}
+                />
                 Fast Delivery
               </li>
             </ul>

@@ -1,7 +1,7 @@
 import axios from "axios";
 import React from "react";
 import { useState } from "react";
-import { useNavigate } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { useAuthContex } from "../../contex/auth-contex";
 import "./auth.css";
 
@@ -14,10 +14,10 @@ const Signup = () => {
     password: "",
     confirmPassword: "",
   });
-  let name, value;
+
   const setUserDetailHandler = (e) => {
-    name = e.target.name;
-    value = e.target.value;
+    let name = e.target.name;
+    let value = e.target.value;
     setUserDetail({ ...userDetail, [name]: value });
   };
 
@@ -25,7 +25,10 @@ const Signup = () => {
     e.preventDefault();
     if (userDetail.password === userDetail.confirmPassword) {
       try {
-        const response = await axios.post(`/api/auth/signup`, userDetail);
+        const response = await axios.post("/api/auth/signup", {
+          email: userDetail.email,
+          password: userDetail.password,
+        });
         authDispatch({
           type: "SIGN_UP",
           payload: {
@@ -35,6 +38,7 @@ const Signup = () => {
         });
         localStorage.setItem("token", response.data.encodedToken);
         localStorage.setItem("user", JSON.stringify(response.data));
+
         navigateHome("/");
       } catch (err) {
         console.warn(err);
@@ -76,24 +80,24 @@ const Signup = () => {
                     value={userDetail.email}
                     onChange={setUserDetailHandler}
                   />
-                  <label htmlFor='pass'>
+                  <label htmlFor='password'>
                     <h3>Enter Your Password</h3>
                   </label>
                   <input
                     placeholder='Enter Your Password'
                     type='password'
-                    id='pass'
+                    id='password'
                     name='password'
                     value={userDetail.password}
                     onChange={setUserDetailHandler}
                   />
-                  <label htmlFor='cpass'>
+                  <label htmlFor='confirmPassword'>
                     <h3>Confirm Your Password</h3>
                   </label>
                   <input
                     placeholder='Enter Your Password'
                     type='password'
-                    id='cpass'
+                    id='confirmPassword'
                     name='confirmPassword'
                     value={userDetail.confirmPassword}
                     onChange={setUserDetailHandler}
@@ -106,7 +110,8 @@ const Signup = () => {
                   <hr className='auth-card-hr' />
                 </form>
                 <p>
-                  Already have account? <a href='#'> Login to your account</a>
+                  Already have account?
+                  <Link to='/login'>Login to your account</Link>
                 </p>
               </div>
             </div>
@@ -118,12 +123,3 @@ const Signup = () => {
 };
 
 export default Signup;
-
-/*
-{
-  "firstName": "Adarsh",
-      "lastName": "Balak",
-      "email": "adarshbk@gmail.com",
-      "password":"123"
-  }
-  */
