@@ -11,10 +11,10 @@ export const DataReducer = (state, { type, payload }) => {
       if (payload === "LOW_TO_HIGH") return { ...state, sortBy: "LOW_TO_HIGH" };
     }
 
-    case "INCLUDE_OUT_OF_STOCK":
+    case "OUT_OF_STOCK":
       return {
         ...state,
-        filters: { ...state.filters, includeOutOfStock: !payload },
+        filters: { ...state.filters, OutOfStock: !payload },
       };
 
     case "FAST_DELIVERY":

@@ -8,7 +8,7 @@ const ProductsList = () => {
   const sortedData = getSortedData(state, state.products);
   const filteredData = getFilteredData(
     sortedData,
-    state.filters.includeOutOfStock,
+    state.filters.OutOfStock,
     state.filters.fastDelivery
   );
   const priceRange = getPriceRangeData(filteredData, state.priceRange);
@@ -35,9 +35,29 @@ const ProductsList = () => {
                       <span>${items.price}</span>
                       <span>{items.stars} stars</span>
                     </div>
-                    <button className='btn primary btn-ecom'>
-                      Add to Cart
-                    </button>
+                    {items.inStock ? null : (
+                      <div className='outOfStock'>Out Of Stock</div>
+                    )}
+                    <div className='overlay'>
+                      <button className='productQuickView'>
+                        <i className='fad fa-search iconCard'></i>
+                      </button>
+                      <button className='productQuickView'>
+                        <i className='far fa-heart iconCard'></i>
+                      </button>
+                      <button
+                        className='productQuickView'
+                        disabled={items.inStock ? "" : true}>
+                        <i
+                          className='far fa-cart-arrow-down iconCard'
+                          style={
+                            items.inStock ? null : { cursor: "not-allowed" }
+                          }></i>
+                      </button>
+                      <button className='productQuickView'>
+                        <i className='far fa-expand-arrows iconCard'></i>
+                      </button>
+                    </div>
                   </div>
                 );
               })

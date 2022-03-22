@@ -44,6 +44,28 @@ const Navbar = () => {
               </NavLink>
             </li>
             <li>
+              <NavLink
+                to='/cart'
+                style={({ isActive }) => {
+                  return {
+                    borderBottom: isActive ? "2px solid #00283b" : "0px",
+                  };
+                }}>
+                <i className='fas fa-heart'></i>
+              </NavLink>
+            </li>
+            <li>
+              <NavLink
+                to='/wishlist'
+                style={({ isActive }) => {
+                  return {
+                    borderBottom: isActive ? "2px solid #00283b" : "0px",
+                  };
+                }}>
+                <i className='fas fa-shopping-cart'></i>
+              </NavLink>
+            </li>
+            <li>
               {authToken ? (
                 <NavLink
                   to='/login'
@@ -63,7 +85,7 @@ const Navbar = () => {
                       borderBottom: isActive ? "2px solid #00283b" : "0px",
                     };
                   }}>
-                  Login
+                  <i className='fas fa-user-plus'></i>
                 </NavLink>
               )}
             </li>

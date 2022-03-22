@@ -1,0 +1,61 @@
+.mainCartWrapper {
+  height: 13rem;
+  display: flex;
+  margin-bottom: 1rem;
+}
+.imageWrapper {
+  height: 100%;
+}
+.imageWrapper img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+.cartContendWrapper {
+  height: 98%;
+  width: 70%;
+  position: relative;
+  border: 2px solid var(--light-gray-color);
+  border-left: 0;
+}
+.cartContend {
+  margin-left: 1rem;
+}
+.cartQuantityBtn {
+  border: 0;
+  border-bottom: 1px solid black;
+  background-color: transparent;
+  margin: 0 1rem 0;
+}
+.btnWrapperEcom {
+  width: 100%;
+  position: absolute;
+  display: flex;
+  flex-direction: row;
+  justify-content: stretch;
+  justify-content: space-between;
+  align-items: flex-end;
+  bottom: 0;
+}
+.btn-cart {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin: 0;
+  width: 50%;
+  padding: 0.5rem 0.2rem;
+  background-color: transparent;
+  border: 0.1rem solid var(--light-gray-color);
+  border-bottom: 0;
+  transition: all 0.2s ease-in;
+}
+.btn-cart:hover {
+  background-color: var(--primary-color);
+  color: var(--white-color);
+}
+@media only screen and (max-width: 500px) {
+  .mainCartWrapper {
+    height: 13rem;
+    width: 100%;
+  }
+}

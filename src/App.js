@@ -7,6 +7,7 @@ import Footer from "./components/Footer/Footer";
 import Signup from "./components/Auth/Signup";
 import Mockman from "mockman-js";
 import Login from "./components/Auth/Login";
+import CartPage from "./pages/CartPage";
 function App() {
   return (
     <>
@@ -15,6 +16,7 @@ function App() {
         <Routes>
           <Route path='/' element={<HomePage />} />
           <Route path='/productListing' element={<ProductListingPage />} />
+          <Route path='/cart' element={<CartPage />} />
           <Route path='/signup' element={<Signup />} />
           <Route path='/login' element={<Login />} />
           <Route path='/mockman' element={<Mockman />}></Route>

@@ -12,7 +12,7 @@ const ProductDataProvider = ({ children }) => {
     sortBy: "",
     filters: {
       filterByCategories: [],
-      includeOutOfStock: false,
+      OutOfStock: false,
       fastDelivery: false,
     },
   };

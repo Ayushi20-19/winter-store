@@ -73,15 +73,15 @@ const FilterData = () => {
               <li>
                 <input
                   type='checkbox'
-                  checked={state.filters.includeOutOfStock}
+                  checked={state.filters.OutOfStock}
                   onChange={() =>
                     dispatch({
-                      type: "INCLUDE_OUT_OF_STOCK",
-                      payload: state.filters.includeOutOfStock,
+                      type: "OUT_OF_STOCK",
+                      payload: state.filters.OutOfStock,
                     })
                   }
                 />
-                Include Out of Stock
+                Exclude Out of Stock
               </li>
               <li>
                 <input
