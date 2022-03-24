@@ -45,7 +45,7 @@ const Navbar = () => {
             </li>
             <li>
               <NavLink
-                to='/cart'
+                to='/wishlist'
                 style={({ isActive }) => {
                   return {
                     borderBottom: isActive ? "2px solid #00283b" : "0px",
@@ -56,7 +56,7 @@ const Navbar = () => {
             </li>
             <li>
               <NavLink
-                to='/wishlist'
+                to='/cart'
                 style={({ isActive }) => {
                   return {
                     borderBottom: isActive ? "2px solid #00283b" : "0px",

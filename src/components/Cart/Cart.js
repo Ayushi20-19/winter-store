@@ -1,7 +1,37 @@
 import React from "react";
+import axios from "axios";
+import { useAuthContex } from "../../contex/auth-contex";
+import { useDataContex } from "../../contex/data-contex";
 import "./cart.css";
 import CartCard from "./CartCard";
+import { useEffect, useState } from "react";
+
 const Cart = () => {
+  const { authState } = useAuthContex();
+
+  const { state, dispatch } = useDataContex();
+  const localToken = localStorage.getItem("token");
+
+  const getCartProduct = async (localToken) => {
+    const response = await axios.get(
+      "/api/user/cart",
+
+      { headers: { authorization: localToken } }
+    );
+
+    console.log("ress", response.data.cart);
+    // dispatch({
+    //   type: "GET_CART",
+    //   payload: response.data.cart,
+    // });
+  };
+  // const mapDataCart = state.cartItem.filter((item) => item == []);
+  // console.log("mapDataCart", mapDataCart);
+
+  useEffect(() => {
+    getCartProduct(localToken);
+  }, []);
+
   return (
     <div>
       <div className='heading-cart'>
@@ -9,7 +39,24 @@ const Cart = () => {
       </div>
       <section className='cart-main'>
         <div className='productDisplay'>
-          <CartCard />
+          {state.cartItem
+            ? state.cartItem.map((products, index) => {
+                {
+                  /* console.log(products.product); */
+                }
+                return (
+                  <>
+                    <CartCard
+                      key={index}
+                      id={products._id}
+                      name={products.title}
+                      price={products.price}
+                      image={products.productImg}
+                    />
+                  </>
+                );
+              })
+            : "..loading"}
         </div>
         <div className='totalCart'>
           <div className='price-card'>

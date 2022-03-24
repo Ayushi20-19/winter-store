@@ -3,7 +3,6 @@
   bottom: 28%;
   left: 0;
   right: 0;
-  /* background-color: var(--primary-color); */
   background-color: var(--white-color);
   /* backdrop-filter: blur(50px);
   -webkit-backdrop-filter: blur(50px); */
@@ -41,7 +40,6 @@
 .iconCard {
   font-size: 1.5rem;
   padding: 0.6rem;
-  /* color: var(--white-color); */
   color: var(--primary-color);
   border-radius: 50%;
 }

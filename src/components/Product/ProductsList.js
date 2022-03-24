@@ -2,9 +2,11 @@ import React from "react";
 import "../Product/Css/productlist.css";
 import { useDataContex } from "../../contex/data-contex";
 import { getSortedData, getFilteredData, getPriceRangeData } from "./Filters";
+import { useNavigate } from "react-router-dom";
 
 const ProductsList = () => {
-  const { state } = useDataContex();
+  const { state, dispatch } = useDataContex();
+  const navitageToCart = useNavigate();
   const sortedData = getSortedData(state, state.products);
   const filteredData = getFilteredData(
     sortedData,
@@ -12,6 +14,9 @@ const ProductsList = () => {
     state.filters.fastDelivery
   );
   const priceRange = getPriceRangeData(filteredData, state.priceRange);
+  console.log("caertt", state.cart);
+  const checkItemInCart = (id) =>
+    state.cartItem.some((dataCart) => dataCart._id === id);
 
   return (
     <div>
@@ -39,21 +44,41 @@ const ProductsList = () => {
                       <div className='outOfStock'>Out Of Stock</div>
                     )}
                     <div className='overlay'>
-                      <button className='productQuickView'>
+                      <button className='productQuickView '>
                         <i className='fad fa-search iconCard'></i>
                       </button>
+
                       <button className='productQuickView'>
                         <i className='far fa-heart iconCard'></i>
                       </button>
-                      <button
-                        className='productQuickView'
-                        disabled={items.inStock ? "" : true}>
-                        <i
-                          className='far fa-cart-arrow-down iconCard'
-                          style={
-                            items.inStock ? null : { cursor: "not-allowed" }
-                          }></i>
-                      </button>
+                      {checkItemInCart(items._id) ? (
+                        <>
+                          <button
+                            className='productQuickView'
+                            onClick={() => navitageToCart("/cart")}>
+                            <i class='fas fa-shopping-bag iconCard'></i>
+                          </button>
+                        </>
+                      ) : (
+                        <>
+                          <button
+                            className='productQuickView'
+                            onClick={(e) =>
+                              dispatch({
+                                type: "ADD_TO_CART",
+                                payload: items,
+                              })
+                            }
+                            disabled={items.inStock ? "" : true}>
+                            <i
+                              className='far fa-shopping-bag iconCard'
+                              style={
+                                items.inStock ? null : { cursor: "not-allowed" }
+                              }></i>
+                          </button>
+                        </>
+                      )}
+
                       <button className='productQuickView'>
                         <i className='far fa-expand-arrows iconCard'></i>
                       </button>
