@@ -1,8 +1,13 @@
 export const DataReducer = (state, { type, payload }) => {
   switch (type) {
+    //case: data like, product and category relater api calls
     case "GET_PRODUCTS":
       return { ...state, products: payload };
 
+    case "GET_CATEGORIES":
+      return { ...state, categories: payload };
+
+    //case: add item to cart, delete from cart and increase decreas quantity related triggers
     case "ADD_TO_CART":
       return { ...state, cartItem: payload };
 
@@ -18,9 +23,7 @@ export const DataReducer = (state, { type, payload }) => {
     case "DECREASE_ITEM_QUANTITY":
       return { ...state, cartItem: payload };
 
-    case "GET_CATEGORIES":
-      return { ...state, categories: payload };
-
+    //case: product filters function trigger
     case "SORT": {
       if (payload === "HIGH_TO_LOW") return { ...state, sortBy: "HIGH_TO_LOW" };
       if (payload === "LOW_TO_HIGH") return { ...state, sortBy: "LOW_TO_HIGH" };

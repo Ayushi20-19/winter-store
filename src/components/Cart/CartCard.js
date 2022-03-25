@@ -1,11 +1,17 @@
 import { React, useState } from "react";
-import { useDataContex } from "../../contex/data-contex";
 import "./cartcard.css";
 
-const CartCard = ({ key, id, name, price, image, removeFromCart }) => {
+const CartCard = ({
+  key,
+  id,
+  name,
+  price,
+  image,
+  removeFromCart,
+  updateCartQuantity,
+}) => {
   const [inputValue, setInputValue] = useState(1);
-  const { state, dispatch } = useDataContex();
-  console.log("from comp", id);
+
   return (
     <div>
       <div className='mainCartWrapper' key={key}>
@@ -19,13 +25,19 @@ const CartCard = ({ key, id, name, price, image, removeFromCart }) => {
             <button
               className='cartQuantityBtn'
               disabled={inputValue === 1 ? true : ""}
-              onClick={() => setInputValue(() => inputValue - 1)}>
+              onClick={() => (
+                setInputValue(() => inputValue - 1),
+                updateCartQuantity(id, "decrement")
+              )}>
               -
             </button>
             {inputValue}
             <button
               className='cartQuantityBtn '
-              onClick={() => setInputValue(() => inputValue + 1)}>
+              onClick={() => (
+                setInputValue(() => inputValue + 1),
+                updateCartQuantity(id, "increment")
+              )}>
               +
             </button>
           </div>

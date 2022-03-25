@@ -1,5 +1,5 @@
 import React from "react";
-
+import Footer from "../components/Footer/Footer";
 import BestSelling from "../components/Home/BestSelling";
 import Category from "../components/Home/Category";
 import HeroSection from "../components/Home/HeroSection";
@@ -12,6 +12,7 @@ const HomePage = () => {
       <OurStory />
       <Category />
       <BestSelling />
+      <Footer />
     </div>
   );
 };

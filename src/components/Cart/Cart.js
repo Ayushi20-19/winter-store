@@ -4,17 +4,16 @@ import { useDataContex } from "../../contex/data-contex";
 import "./cart.css";
 import CartCard from "./CartCard";
 import { useEffect } from "react";
+import PriceCard from "./PriceCard";
 
 const Cart = () => {
   const { state, dispatch } = useDataContex();
   const localToken = localStorage.getItem("token");
 
   const getCartProduct = async (localToken) => {
-    const response = await axios.get(
-      "/api/user/cart",
-
-      { headers: { authorization: localToken } }
-    );
+    const response = await axios.get("/api/user/cart", {
+      headers: { authorization: localToken },
+    });
 
     dispatch({
       type: "GET_CART",
@@ -23,7 +22,6 @@ const Cart = () => {
   };
 
   const removeFromCart = async (_id) => {
-    console.log("inside remove handler", _id);
     const localToken = localStorage.getItem("token");
     const response = await axios.delete(`/api/user/cart/${_id}`, {
       headers: {
@@ -31,26 +29,95 @@ const Cart = () => {
       },
     });
     if (response.status === 200) {
-      console.log(response);
       dispatch({ type: "REMOVE_FROM_CART", payload: response.data.cart });
     } else {
       console.warn(" error ", response);
     }
   };
 
+  const updateCartQuantity = async (id, type) => {
+    const product = state.cartItem.find((product) => product._id === id);
+    const response = await axios.post(
+      `/api/user/cart/${id}`,
+      {
+        action: {
+          type,
+        },
+        data: {
+          cart: product,
+        },
+      },
+      {
+        headers: {
+          authorization: localToken,
+        },
+      }
+    );
+    if (response.status === 200) {
+      dispatch({
+        type:
+          type === "increment"
+            ? "INCREASE_ITEM_QUANTITY"
+            : "DECREASE_ITEM_QUANTITY",
+        payload: response.data.cart,
+      });
+    } else {
+      console.warn(" error from set product", response);
+    }
+  };
+
+  const getCartTotalPrice = (cartItem) => {
+    const totaldiscount = 299;
+    const deliveryCharges = 40;
+    const intialValue = 0;
+    const cartQuantity = cartItem.reduce(
+      (acc, curr) => acc + Number(curr.qty),
+      intialValue
+    );
+    const itemPrice = cartItem.reduce(
+      (acc, curr) => acc + Number(curr.price * curr.qty),
+      intialValue
+    );
+
+    //discont will apply only if item price is greater than 499, and neither it affect if you increase the quantity,
+    //only single item price should be greater than 499
+    const discountedPrice = cartItem.reduce(
+      (acc, curr) =>
+        curr.price > 499
+          ? acc + Number(curr.price * curr.qty) - totaldiscount
+          : acc + Number(curr.price * curr.qty),
+      intialValue
+    );
+
+    const totalPrice =
+      discountedPrice === itemPrice
+        ? itemPrice + deliveryCharges
+        : discountedPrice + deliveryCharges;
+
+    return { cartQuantity, itemPrice, discountedPrice, totalPrice };
+  };
+
   useEffect(() => {
     getCartProduct(localToken);
   }, []);
 
+  const { cartQuantity, itemPrice, discountedPrice, totalPrice } =
+    getCartTotalPrice(state.cartItem);
+
   return (
     <div>
       <div className='heading-cart'>
-        <h1>My Carts</h1>
+        {state.cartItem.length !== 0 ? (
+          <h1>My Cart</h1>
+        ) : (
+          <h1>No item in Cart</h1>
+        )}
       </div>
       <section className='cart-main'>
-        <div className='productDisplay'>
-          {state.cartItem
-            ? state.cartItem.map((products, index) => {
+        {state.cartItem.length !== 0 ? (
+          <>
+            <div className='productDisplay'>
+              {state.cartItem.map((products, index) => {
                 console.log("from cart comp props", products._id);
                 return (
                   <>
@@ -61,43 +128,22 @@ const Cart = () => {
                       price={products.price}
                       image={products.productImg}
                       removeFromCart={removeFromCart}
+                      updateCartQuantity={updateCartQuantity}
                     />
                   </>
                 );
-              })
-            : "..loading"}
-        </div>
-        <div className='totalCart'>
-          <div className='price-card'>
-            <div className='price-card-content'>
-              <div className='price-heading'>
-                <b>PRICE DETAILS</b>
-              </div>
-              <div className='pricing'>
-                <div className='pricing-item'>
-                  <span>Price</span>
-                  <span>2342$</span>
-                </div>
-                <div className='pricing-item'>
-                  <span>Discount</span>
-                  <span>-40$</span>
-                </div>
-                <div className='pricing-item'>
-                  <span>Delivery Charges</span>
-                  <span>10$</span>
-                </div>
-              </div>
-              <div className='total-amout'>
-                <span>Total Amount</span>
-                <span>4090$</span>
-              </div>
-              <div className='amount-save'>You will save 40$ in this order</div>
-              <button className='btn primary border-radius-0 place-order'>
-                Place Order
-              </button>
+              })}
             </div>
-          </div>
-        </div>
+            <div className='totalCart'>
+              <PriceCard
+                cartQuantity={cartQuantity}
+                itemPrice={itemPrice}
+                discountedPrice={discountedPrice}
+                totalPrice={totalPrice}
+              />
+            </div>
+          </>
+        ) : null}
       </section>
     </div>
   );
