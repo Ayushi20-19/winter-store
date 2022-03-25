@@ -2,9 +2,10 @@ import { React, useState } from "react";
 import { useDataContex } from "../../contex/data-contex";
 import "./cartcard.css";
 
-const CartCard = ({ key, id, name, price, image }) => {
+const CartCard = ({ key, id, name, price, image, removeFromCart }) => {
   const [inputValue, setInputValue] = useState(1);
   const { state, dispatch } = useDataContex();
+  console.log("from comp", id);
   return (
     <div>
       <div className='mainCartWrapper' key={key}>
@@ -17,7 +18,7 @@ const CartCard = ({ key, id, name, price, image }) => {
             <h3>${price}</h3>
             <button
               className='cartQuantityBtn'
-              disabled={inputValue === 0 ? true : ""}
+              disabled={inputValue === 1 ? true : ""}
               onClick={() => setInputValue(() => inputValue - 1)}>
               -
             </button>
@@ -30,14 +31,7 @@ const CartCard = ({ key, id, name, price, image }) => {
           </div>
           <div class='btnWrapperEcom '>
             <button class='btn-cart'>Move to WishList</button>
-            <button
-              class='btn-cart'
-              onClick={() =>
-                dispatch({
-                  type: "REMOVE_FROM_CART",
-                  payload: id,
-                })
-              }>
+            <button class='btn-cart' onClick={() => removeFromCart(id)}>
               Remove From Cart
             </button>
           </div>

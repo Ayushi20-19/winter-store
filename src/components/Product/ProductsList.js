@@ -3,6 +3,7 @@ import "../Product/Css/productlist.css";
 import { useDataContex } from "../../contex/data-contex";
 import { getSortedData, getFilteredData, getPriceRangeData } from "./Filters";
 import { useNavigate } from "react-router-dom";
+import { setCartProducts } from "../Cart/SetCartProducts";
 
 const ProductsList = () => {
   const { state, dispatch } = useDataContex();
@@ -14,9 +15,19 @@ const ProductsList = () => {
     state.filters.fastDelivery
   );
   const priceRange = getPriceRangeData(filteredData, state.priceRange);
-  console.log("caertt", state.cart);
+
   const checkItemInCart = (id) =>
     state.cartItem.some((dataCart) => dataCart._id === id);
+
+  const cartBtnHandler = async (product) => {
+    let localToken = localStorage.getItem("token");
+    if (localToken) {
+      const response = await setCartProducts(product, localToken);
+      if (response.status === 201) {
+        dispatch({ type: "ADD_TO_CART", payload: response.data.cart });
+      }
+    }
+  };
 
   return (
     <div>
@@ -63,12 +74,7 @@ const ProductsList = () => {
                         <>
                           <button
                             className='productQuickView'
-                            onClick={(e) =>
-                              dispatch({
-                                type: "ADD_TO_CART",
-                                payload: items,
-                              })
-                            }
+                            onClick={() => cartBtnHandler(items)}
                             disabled={items.inStock ? "" : true}>
                             <i
                               className='far fa-shopping-bag iconCard'

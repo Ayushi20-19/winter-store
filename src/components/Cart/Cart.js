@@ -1,14 +1,11 @@
 import React from "react";
 import axios from "axios";
-import { useAuthContex } from "../../contex/auth-contex";
 import { useDataContex } from "../../contex/data-contex";
 import "./cart.css";
 import CartCard from "./CartCard";
-import { useEffect, useState } from "react";
+import { useEffect } from "react";
 
 const Cart = () => {
-  const { authState } = useAuthContex();
-
   const { state, dispatch } = useDataContex();
   const localToken = localStorage.getItem("token");
 
@@ -19,14 +16,27 @@ const Cart = () => {
       { headers: { authorization: localToken } }
     );
 
-    console.log("ress", response.data.cart);
-    // dispatch({
-    //   type: "GET_CART",
-    //   payload: response.data.cart,
-    // });
+    dispatch({
+      type: "GET_CART",
+      payload: response.data.cart,
+    });
   };
-  // const mapDataCart = state.cartItem.filter((item) => item == []);
-  // console.log("mapDataCart", mapDataCart);
+
+  const removeFromCart = async (_id) => {
+    console.log("inside remove handler", _id);
+    const localToken = localStorage.getItem("token");
+    const response = await axios.delete(`/api/user/cart/${_id}`, {
+      headers: {
+        authorization: localToken,
+      },
+    });
+    if (response.status === 200) {
+      console.log(response);
+      dispatch({ type: "REMOVE_FROM_CART", payload: response.data.cart });
+    } else {
+      console.warn(" error ", response);
+    }
+  };
 
   useEffect(() => {
     getCartProduct(localToken);
@@ -41,9 +51,7 @@ const Cart = () => {
         <div className='productDisplay'>
           {state.cartItem
             ? state.cartItem.map((products, index) => {
-                {
-                  /* console.log(products.product); */
-                }
+                console.log("from cart comp props", products._id);
                 return (
                   <>
                     <CartCard
@@ -52,6 +60,7 @@ const Cart = () => {
                       name={products.title}
                       price={products.price}
                       image={products.productImg}
+                      removeFromCart={removeFromCart}
                     />
                   </>
                 );
