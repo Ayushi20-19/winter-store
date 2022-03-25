@@ -118,7 +118,6 @@ const Cart = () => {
           <>
             <div className='productDisplay'>
               {state.cartItem.map((products, index) => {
-                console.log("from cart comp props", products._id);
                 return (
                   <>
                     <CartCard
