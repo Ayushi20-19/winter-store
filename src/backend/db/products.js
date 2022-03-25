@@ -8,7 +8,7 @@ import { v4 as uuid } from "uuid";
 export const products = [
   {
     _id: uuid(),
-    title: "Designed mug",
+    title: "Designer T-shirt",
     description: "This is the Description",
     price: "500",
     categoryName: "gift",
@@ -20,7 +20,7 @@ export const products = [
   },
   {
     _id: uuid(),
-    title: "Theme Party ",
+    title: "T-shirt ",
     description: "This is the Description",
     price: "200",
     categoryName: "dress",
@@ -56,7 +56,7 @@ export const products = [
   },
   {
     _id: uuid(),
-    title: "Designed mug",
+    title: "Designer dress",
     description: "This is the Description",
     price: "700",
     categoryName: "gift",
@@ -68,7 +68,7 @@ export const products = [
   },
   {
     _id: uuid(),
-    title: "Theme Party ",
+    title: "Party dress ",
     description: "This is the Description",
     price: "800",
     categoryName: "dress",

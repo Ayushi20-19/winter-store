@@ -48,7 +48,7 @@ const ProductsList = () => {
                       <p>{items.description}</p>
                     </div>
                     <div className='btns-wrapper-ecom'>
-                      <span>${items.price}</span>
+                      <span>₹{items.price}</span>
                       <span>{items.stars} stars</span>
                     </div>
                     {items.inStock ? null : (
