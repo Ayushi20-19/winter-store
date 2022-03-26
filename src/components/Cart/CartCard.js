@@ -7,11 +7,10 @@ const CartCard = ({
   name,
   price,
   image,
+  quantity,
   removeFromCart,
   updateCartQuantity,
 }) => {
-  const [inputValue, setInputValue] = useState(1);
-
   return (
     <div>
       <div className='mainCartWrapper' key={key}>
@@ -24,20 +23,14 @@ const CartCard = ({
             <h3>${price}</h3>
             <button
               className='cartQuantityBtn'
-              disabled={inputValue === 1 ? true : ""}
-              onClick={() => (
-                setInputValue(() => inputValue - 1),
-                updateCartQuantity(id, "decrement")
-              )}>
+              disabled={Number(quantity) === 1 ? true : ""}
+              onClick={() => updateCartQuantity(id, "decrement")}>
               -
             </button>
-            {inputValue}
+            {quantity}
             <button
               className='cartQuantityBtn '
-              onClick={() => (
-                setInputValue(() => inputValue + 1),
-                updateCartQuantity(id, "increment")
-              )}>
+              onClick={() => updateCartQuantity(id, "increment")}>
               +
             </button>
           </div>

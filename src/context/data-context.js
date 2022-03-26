@@ -57,5 +57,5 @@ const ProductDataProvider = ({ children }) => {
 };
 
 //custom hook
-const useDataContex = () => useContext(ProductData);
-export { ProductDataProvider, useDataContex };
+const useDataContext = () => useContext(ProductData);
+export { ProductDataProvider, useDataContext };

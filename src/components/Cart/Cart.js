@@ -1,13 +1,13 @@
 import React from "react";
 import axios from "axios";
-import { useDataContex } from "../../contex/data-contex";
+import { useDataContext } from "../../context/data-context";
 import "./cart.css";
 import CartCard from "./CartCard";
 import { useEffect } from "react";
 import PriceCard from "./PriceCard";
 
 const Cart = () => {
-  const { state, dispatch } = useDataContex();
+  const { state, dispatch } = useDataContext();
   const localToken = localStorage.getItem("token");
 
   const getCartProduct = async (localToken) => {
@@ -37,32 +37,36 @@ const Cart = () => {
 
   const updateCartQuantity = async (id, type) => {
     const product = state.cartItem.find((product) => product._id === id);
-    const response = await axios.post(
-      `/api/user/cart/${id}`,
-      {
-        action: {
-          type,
+    try {
+      const response = await axios.post(
+        `/api/user/cart/${id}`,
+        {
+          action: {
+            type,
+          },
+          data: {
+            cart: product,
+          },
         },
-        data: {
-          cart: product,
-        },
-      },
-      {
-        headers: {
-          authorization: localToken,
-        },
+        {
+          headers: {
+            authorization: localToken,
+          },
+        }
+      );
+      if (response.status === 200) {
+        dispatch({
+          type:
+            type === "increment"
+              ? "INCREASE_ITEM_QUANTITY"
+              : "DECREASE_ITEM_QUANTITY",
+          payload: response.data.cart,
+        });
+      } else {
+        console.warn(" error from update cart quantity", response);
       }
-    );
-    if (response.status === 200) {
-      dispatch({
-        type:
-          type === "increment"
-            ? "INCREASE_ITEM_QUANTITY"
-            : "DECREASE_ITEM_QUANTITY",
-        payload: response.data.cart,
-      });
-    } else {
-      console.warn(" error from set product", response);
+    } catch (error) {
+      console.warn(" error from update cart quantity", error);
     }
   };
 
@@ -126,6 +130,7 @@ const Cart = () => {
                       name={products.title}
                       price={products.price}
                       image={products.productImg}
+                      quantity={products.qty}
                       removeFromCart={removeFromCart}
                       updateCartQuantity={updateCartQuantity}
                     />

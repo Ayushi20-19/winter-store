@@ -1,9 +1,9 @@
 import React from "react";
-import { useDataContex } from "../../contex/data-contex";
+import { useDataContext } from "../../context/data-context";
 import "../Product/Css/filterdata.css";
 
 const FilterData = () => {
-  const { state, dispatch } = useDataContex();
+  const { state, dispatch } = useDataContext();
   return (
     <div>
       <aside className='filter-sidebar'>

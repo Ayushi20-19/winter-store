@@ -1,10 +1,10 @@
 import React from "react";
 import { NavLink, useNavigate } from "react-router-dom";
-import { useAuthContex } from "../../contex/auth-contex";
+import { useAuthContext } from "../../context/auth-context";
 
 const Navbar = () => {
   const navigate = useNavigate();
-  const { authDispatch } = useAuthContex();
+  const { authDispatch } = useAuthContext();
   let authToken = localStorage.getItem("token");
   const clearTokenFromStorage = () => {
     localStorage.removeItem("token");

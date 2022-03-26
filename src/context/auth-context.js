@@ -1,7 +1,7 @@
 import { useContext, createContext, useReducer } from "react";
 import { AuthReducer } from "../reducer/AuthReducer";
 
-const AuthContex = createContext();
+const AuthContext = createContext();
 
 const AuthProvider = ({ children }) => {
   const initialAuthState = {
@@ -12,12 +12,12 @@ const AuthProvider = ({ children }) => {
   const [authState, authDispatch] = useReducer(AuthReducer, initialAuthState);
 
   return (
-    <AuthContex.Provider value={{ authState, authDispatch }}>
+    <AuthContext.Provider value={{ authState, authDispatch }}>
       {children}
-    </AuthContex.Provider>
+    </AuthContext.Provider>
   );
 };
 
 //custom hook
-const useAuthContex = () => useContext(AuthContex);
-export { AuthProvider, useAuthContex };
+const useAuthContext = () => useContext(AuthContext);
+export { AuthProvider, useAuthContext };

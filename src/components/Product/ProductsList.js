@@ -1,12 +1,12 @@
 import React from "react";
 import "../Product/Css/productlist.css";
-import { useDataContex } from "../../contex/data-contex";
+import { useDataContext } from "../../context/data-context";
 import { getSortedData, getFilteredData, getPriceRangeData } from "./Filters";
 import { useNavigate } from "react-router-dom";
 import { setCartProducts } from "../Cart/SetCartProducts";
 
 const ProductsList = () => {
-  const { state, dispatch } = useDataContex();
+  const { state, dispatch } = useDataContext();
   const navitageToCart = useNavigate();
   const sortedData = getSortedData(state, state.products);
   const filteredData = getFilteredData(

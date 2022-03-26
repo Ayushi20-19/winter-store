@@ -2,12 +2,12 @@ import axios from "axios";
 import React from "react";
 import { useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
-import { useAuthContex } from "../../contex/auth-contex";
+import { useAuthContext } from "../../context/auth-context";
 
 import "./auth.css";
 const Login = () => {
   const navigateHome = useNavigate();
-  const { authDispatch } = useAuthContex();
+  const { authDispatch } = useAuthContext();
   const [userDetail, setUserDetail] = useState({
     email: "",
     password: "",
@@ -17,8 +17,7 @@ const Login = () => {
     password: "adarshBalaki123",
   };
   const setUserDetailHandler = (e) => {
-    let name = e.target.name;
-    let value = e.target.value;
+    const { name, value } = e.target;
     setUserDetail({ ...userDetail, [name]: value });
   };
   const testCredentials = (e) => {
@@ -33,17 +32,18 @@ const Login = () => {
         password: userDetail.password,
       });
 
-      console.log("login", response);
-      localStorage.setItem("token", response.data.encodedToken);
-      localStorage.setItem("user", JSON.stringify(response.data));
-      navigateHome("/");
-      authDispatch({
-        type: "LOG_IN",
-        payload: {
-          token: response.data.encodedToken,
-          userData: userDetail,
-        },
-      });
+      if (response.status === 200) {
+        localStorage.setItem("token", response.data.encodedToken);
+        localStorage.setItem("user", JSON.stringify(response.data));
+        navigateHome("/");
+        authDispatch({
+          type: "LOG_IN",
+          payload: {
+            token: response.data.encodedToken,
+            userData: userDetail,
+          },
+        });
+      }
     } catch (err) {
       console.warn(err);
     }
