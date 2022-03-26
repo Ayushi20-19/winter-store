@@ -3,7 +3,6 @@ import "./Css/herosection.css";
 const HeroSection = () => {
   return (
     <div>
-      {" "}
       <section className='body'>
         <div className='content'>
           <h1>Winter Store</h1>

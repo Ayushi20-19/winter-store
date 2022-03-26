@@ -15,13 +15,13 @@ const getSortedData = (state, data) => {
   }
 };
 
-const getFilteredData = (data, includeOutOfStock, fastDelivery) => {
+const getFilteredData = (data, OutOfStock, fastDelivery) => {
   let filteredData = [...data];
-  if (includeOutOfStock && !fastDelivery) {
+  if (OutOfStock && !fastDelivery) {
     filteredData = filteredData.filter((items) => items.inStock);
-  } else if (fastDelivery && !includeOutOfStock) {
+  } else if (fastDelivery && !OutOfStock) {
     filteredData = filteredData.filter((items) => items.fastDelivery);
-  } else if (fastDelivery && includeOutOfStock) {
+  } else if (fastDelivery && OutOfStock) {
     filteredData = filteredData
       .filter((items) => items.inStock)
       .filter((items) => items.fastDelivery);

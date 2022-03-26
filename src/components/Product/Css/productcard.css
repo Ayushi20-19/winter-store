@@ -1,0 +1,47 @@
+.overlay {
+  position: absolute;
+  bottom: 28%;
+  left: 0;
+  right: 0;
+  background-color: var(--white-color);
+  overflow: hidden;
+  width: 100%;
+  height: 0;
+  transition: 0.5s ease;
+  display: flex;
+  justify-content: space-between;
+}
+.outOfStock {
+  position: absolute;
+  bottom: 48%;
+  left: 0;
+  right: 0;
+  background-color: var(--white-color);
+  width: 100%;
+  height: 10%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: 1.3rem;
+}
+.card-wrapper:hover .overlay {
+  height: 10%;
+}
+.productQuickView {
+  width: 100%;
+  background: transparent;
+  color: var(--black-color);
+  border: 0;
+  margin: 0.5rem;
+}
+
+.iconCard {
+  font-size: 1.5rem;
+  padding: 0.6rem;
+  color: var(--primary-color);
+  border-radius: 50%;
+}
+.iconCard:hover {
+  background-color: var(--primary-color);
+  color: var(--white-color);
+}

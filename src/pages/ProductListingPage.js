@@ -1,6 +1,7 @@
 import React from "react";
 import FilterData from "../components/Product/FilterData";
 import ProductsList from "../components/Product/ProductsList";
+import Footer from "../components/Footer/Footer";
 import "../components/Product/Css/productlistingpage.css";
 const ProductListingPage = () => {
   return (
@@ -13,6 +14,7 @@ const ProductListingPage = () => {
           <ProductsList />
         </div>
       </div>
+      <Footer />
     </div>
   );
 };

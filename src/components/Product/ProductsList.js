@@ -1,17 +1,33 @@
 import React from "react";
 import "../Product/Css/productlist.css";
-import { useDataContex } from "../../contex/data-contex";
+import { useDataContext } from "../../context/data-context";
 import { getSortedData, getFilteredData, getPriceRangeData } from "./Filters";
+import { useNavigate } from "react-router-dom";
+import { setCartProducts } from "../Cart/SetCartProducts";
 
 const ProductsList = () => {
-  const { state } = useDataContex();
+  const { state, dispatch } = useDataContext();
+  const navitageToCart = useNavigate();
   const sortedData = getSortedData(state, state.products);
   const filteredData = getFilteredData(
     sortedData,
-    state.filters.includeOutOfStock,
+    state.filters.OutOfStock,
     state.filters.fastDelivery
   );
   const priceRange = getPriceRangeData(filteredData, state.priceRange);
+
+  const checkItemInCart = (id) =>
+    state.cartItem.some((dataCart) => dataCart._id === id);
+
+  const cartBtnHandler = async (product) => {
+    let localToken = localStorage.getItem("token");
+    if (localToken) {
+      const response = await setCartProducts(product, localToken);
+      if (response.status === 201) {
+        dispatch({ type: "ADD_TO_CART", payload: response.data.cart });
+      }
+    }
+  };
 
   return (
     <div>
@@ -32,16 +48,51 @@ const ProductsList = () => {
                       <p>{items.description}</p>
                     </div>
                     <div className='btns-wrapper-ecom'>
-                      <span>${items.price}</span>
+                      <span>₹{items.price}</span>
                       <span>{items.stars} stars</span>
                     </div>
-                    <button className='btn primary btn-ecom'>
-                      Add to Cart
-                    </button>
+                    {items.inStock ? null : (
+                      <div className='outOfStock'>Out Of Stock</div>
+                    )}
+                    <div className='overlay'>
+                      <button className='productQuickView '>
+                        <i className='fad fa-search iconCard'></i>
+                      </button>
+
+                      <button className='productQuickView'>
+                        <i className='far fa-heart iconCard'></i>
+                      </button>
+                      {checkItemInCart(items._id) ? (
+                        <>
+                          <button
+                            className='productQuickView'
+                            onClick={() => navitageToCart("/cart")}>
+                            <i class='fas fa-shopping-bag iconCard'></i>
+                          </button>
+                        </>
+                      ) : (
+                        <>
+                          <button
+                            className='productQuickView'
+                            onClick={() => cartBtnHandler(items)}
+                            disabled={items.inStock ? "" : true}>
+                            <i
+                              className='far fa-shopping-bag iconCard'
+                              style={
+                                items.inStock ? null : { cursor: "not-allowed" }
+                              }></i>
+                          </button>
+                        </>
+                      )}
+
+                      <button className='productQuickView'>
+                        <i className='far fa-expand-arrows iconCard'></i>
+                      </button>
+                    </div>
                   </div>
                 );
               })
-            : "loading......"}{" "}
+            : "loading......"}
         </div>
       </section>
     </div>

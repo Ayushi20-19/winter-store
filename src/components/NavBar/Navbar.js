@@ -1,13 +1,18 @@
 import React from "react";
 import { NavLink, useNavigate } from "react-router-dom";
+import { useAuthContext } from "../../context/auth-context";
 
 const Navbar = () => {
   const navigate = useNavigate();
+  const { authDispatch } = useAuthContext();
   let authToken = localStorage.getItem("token");
   const clearTokenFromStorage = () => {
     localStorage.removeItem("token");
-    localStorage.removeItem("userDetail");
+    localStorage.removeItem("user");
     navigate("/");
+    authDispatch({
+      type: "LOG_OUT",
+    });
   };
 
   return (
@@ -39,9 +44,31 @@ const Navbar = () => {
               </NavLink>
             </li>
             <li>
+              <NavLink
+                to='/wishlist'
+                style={({ isActive }) => {
+                  return {
+                    borderBottom: isActive ? "2px solid #00283b" : "0px",
+                  };
+                }}>
+                <i className='fas fa-heart'></i>
+              </NavLink>
+            </li>
+            <li>
+              <NavLink
+                to='/cart'
+                style={({ isActive }) => {
+                  return {
+                    borderBottom: isActive ? "2px solid #00283b" : "0px",
+                  };
+                }}>
+                <i className='fas fa-shopping-cart'></i>
+              </NavLink>
+            </li>
+            <li>
               {authToken ? (
                 <NavLink
-                  to='/signup'
+                  to='/login'
                   onClick={clearTokenFromStorage}
                   style={({ isActive }) => {
                     return {
@@ -52,13 +79,13 @@ const Navbar = () => {
                 </NavLink>
               ) : (
                 <NavLink
-                  to='/signup'
+                  to='/login'
                   style={({ isActive }) => {
                     return {
                       borderBottom: isActive ? "2px solid #00283b" : "0px",
                     };
                   }}>
-                  Signup
+                  <i className='fas fa-user-plus'></i>
                 </NavLink>
               )}
             </li>

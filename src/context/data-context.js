@@ -8,11 +8,12 @@ const ProductDataProvider = ({ children }) => {
   const initialState = {
     products: [],
     categories: [],
+    cartItem: [],
     priceRange: "",
     sortBy: "",
     filters: {
       filterByCategories: [],
-      includeOutOfStock: false,
+      OutOfStock: false,
       fastDelivery: false,
     },
   };
@@ -56,5 +57,5 @@ const ProductDataProvider = ({ children }) => {
 };
 
 //custom hook
-const useDataContex = () => useContext(ProductData);
-export { ProductDataProvider, useDataContex };
+const useDataContext = () => useContext(ProductData);
+export { ProductDataProvider, useDataContext };

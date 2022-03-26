@@ -1,9 +1,9 @@
 import React from "react";
-import { useDataContex } from "../../contex/data-contex";
+import { useDataContext } from "../../context/data-context";
 import "../Product/Css/filterdata.css";
 
 const FilterData = () => {
-  const { state, dispatch } = useDataContex();
+  const { state, dispatch } = useDataContext();
   return (
     <div>
       <aside className='filter-sidebar'>
@@ -73,15 +73,15 @@ const FilterData = () => {
               <li>
                 <input
                   type='checkbox'
-                  checked={state.filters.includeOutOfStock}
+                  checked={state.filters.OutOfStock}
                   onChange={() =>
                     dispatch({
-                      type: "INCLUDE_OUT_OF_STOCK",
-                      payload: state.filters.includeOutOfStock,
+                      type: "OUT_OF_STOCK",
+                      payload: state.filters.OutOfStock,
                     })
                   }
                 />
-                Include Out of Stock
+                Exclude Out of Stock
               </li>
               <li>
                 <input
@@ -93,7 +93,7 @@ const FilterData = () => {
                       payload: state.filters.fastDelivery,
                     })
                   }
-                />{" "}
+                />
                 Fast Delivery
               </li>
             </ul>

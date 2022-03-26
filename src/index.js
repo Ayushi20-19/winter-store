@@ -3,9 +3,9 @@ import ReactDOM from "react-dom";
 import "./index.css";
 import App from "./App";
 import { makeServer } from "./server";
-import { ProductDataProvider } from "./contex/data-contex";
+import { ProductDataProvider } from "./context/data-context";
 import { BrowserRouter as Router } from "react-router-dom";
-import { AuthProvider } from "./contex/auth-contex";
+import { AuthProvider } from "./context/auth-context";
 
 // Call make Server
 makeServer();
