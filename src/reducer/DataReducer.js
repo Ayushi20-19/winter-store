@@ -7,7 +7,7 @@ export const DataReducer = (state, { type, payload }) => {
     case "GET_CATEGORIES":
       return { ...state, categories: payload };
 
-    //case: add item to cart, delete from cart and increase decreas quantity related triggers
+    //case: add item to wishlist, delete from cart and increase decreas quantity related triggers
     case "ADD_TO_CART":
       return { ...state, cartItem: payload };
 
@@ -22,6 +22,19 @@ export const DataReducer = (state, { type, payload }) => {
 
     case "DECREASE_ITEM_QUANTITY":
       return { ...state, cartItem: payload };
+
+    //case: add item to wishlist, delete from wishlist
+    case "ADD_TO_WISHLIST":
+      return { ...state, wishlistItem: payload };
+
+    case "GET_WISHLIST":
+      return { ...state, wishlistItem: payload };
+
+    case "REMOVE_FROM_WISHLIST":
+      return { ...state, wishlistItem: payload };
+
+    // case "MOVE_TO_CART":
+    //   return { ...state, cartItem: payload };
 
     //case: product filters function trigger
     case "SORT": {

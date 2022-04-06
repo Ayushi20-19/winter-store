@@ -1,4 +1,8 @@
 import { React, useState } from "react";
+import { useNavigate } from "react-router-dom";
+import { useAuthContext } from "../../context/auth-context";
+import { useDataContext } from "../../context/data-context";
+import { setWishlistProducts } from "../Wishlist/SetWishlistProducts";
 import "./cartcard.css";
 
 const CartCard = ({
@@ -11,6 +15,14 @@ const CartCard = ({
   removeFromCart,
   updateCartQuantity,
 }) => {
+  const {
+    authState: { token },
+  } = useAuthContext();
+  const { state, dispatch } = useDataContext();
+  const navigate = useNavigate();
+  const product = state.products.find((item) => item._id === id);
+  const checkItemInWishlist = (id) =>
+    state.wishlistItem.some((dataWishlist) => dataWishlist._id === id);
   return (
     <div>
       <div className='mainCartWrapper' key={key}>
@@ -35,7 +47,22 @@ const CartCard = ({
             </button>
           </div>
           <div class='btnWrapperEcom '>
-            <button class='btn-cart'>Move to WishList</button>
+            {checkItemInWishlist(id) ? (
+              <>
+                <button class='btn-cart' onClick={() => navigate("/wishlist")}>
+                  Go To Wishlist
+                </button>
+              </>
+            ) : (
+              <>
+                <button
+                  class='btn-cart'
+                  onClick={() => setWishlistProducts(product, token, dispatch)}>
+                  Add to WishList
+                </button>
+              </>
+            )}
+
             <button class='btn-cart' onClick={() => removeFromCart(id)}>
               Remove From Cart
             </button>

@@ -7,6 +7,7 @@ import Signup from "./components/Auth/Signup";
 import Mockman from "mockman-js";
 import Login from "./components/Auth/Login";
 import CartPage from "./pages/CartPage";
+import WishlistPage from "./pages/WishlistPage";
 function App() {
   return (
     <>
@@ -16,6 +17,7 @@ function App() {
           <Route path='/' element={<HomePage />} />
           <Route path='/productListing' element={<ProductListingPage />} />
           <Route path='/cart' element={<CartPage />} />
+          <Route path='/wishlist' element={<WishlistPage />} />
           <Route path='/signup' element={<Signup />} />
           <Route path='/login' element={<Login />} />
           <Route path='/mockman' element={<Mockman />}></Route>

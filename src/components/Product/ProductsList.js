@@ -4,10 +4,15 @@ import { useDataContext } from "../../context/data-context";
 import { getSortedData, getFilteredData, getPriceRangeData } from "./Filters";
 import { useNavigate } from "react-router-dom";
 import { setCartProducts } from "../Cart/SetCartProducts";
+import { setWishlistProducts } from "../Wishlist/SetWishlistProducts";
+import { useAuthContext } from "../../context/auth-context";
 
 const ProductsList = () => {
   const { state, dispatch } = useDataContext();
-  const navitageToCart = useNavigate();
+  const {
+    authState: { token },
+  } = useAuthContext();
+  const navitage = useNavigate();
   const sortedData = getSortedData(state, state.products);
   const filteredData = getFilteredData(
     sortedData,
@@ -18,17 +23,18 @@ const ProductsList = () => {
 
   const checkItemInCart = (id) =>
     state.cartItem.some((dataCart) => dataCart._id === id);
-
-  const cartBtnHandler = async (product) => {
-    let localToken = localStorage.getItem("token");
-    if (localToken) {
-      const response = await setCartProducts(product, localToken);
-      if (response.status === 201) {
-        dispatch({ type: "ADD_TO_CART", payload: response.data.cart });
-      }
+  const checkItemInWishlist = (id) =>
+    state.wishlistItem.some((dataWishlist) => dataWishlist._id === id);
+  const cartBtnHandler = (product) => {
+    if (token) {
+      setCartProducts(product, token, dispatch);
     }
   };
-
+  const wishlistBtnHandler = (product) => {
+    if (token) {
+      setWishlistProducts(product, token, dispatch);
+    }
+  };
   return (
     <div>
       <section className='main-prod-section'>
@@ -58,15 +64,29 @@ const ProductsList = () => {
                       <button className='productQuickView '>
                         <i className='fad fa-search iconCard'></i>
                       </button>
+                      {checkItemInWishlist(items._id) ? (
+                        <>
+                          <button
+                            className='productQuickView'
+                            onClick={() => navitage("/wishlist")}>
+                            <i class='fas  fa-heart  iconCard'></i>
+                          </button>
+                        </>
+                      ) : (
+                        <>
+                          <button
+                            className='productQuickView'
+                            onClick={() => wishlistBtnHandler(items)}>
+                            <i className='far fa-heart iconCard'></i>
+                          </button>
+                        </>
+                      )}
 
-                      <button className='productQuickView'>
-                        <i className='far fa-heart iconCard'></i>
-                      </button>
                       {checkItemInCart(items._id) ? (
                         <>
                           <button
                             className='productQuickView'
-                            onClick={() => navitageToCart("/cart")}>
+                            onClick={() => navitage("/cart")}>
                             <i class='fas fa-shopping-bag iconCard'></i>
                           </button>
                         </>
