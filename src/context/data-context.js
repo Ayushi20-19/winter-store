@@ -9,6 +9,7 @@ const ProductDataProvider = ({ children }) => {
     products: [],
     categories: [],
     cartItem: [],
+    wishlistItem: [],
     priceRange: "",
     sortBy: "",
     filters: {

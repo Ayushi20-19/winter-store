@@ -2,12 +2,17 @@ import React from "react";
 import "../Product/Css/productlist.css";
 import { useDataContext } from "../../context/data-context";
 import { getSortedData, getFilteredData, getPriceRangeData } from "./Filters";
-import { useNavigate } from "react-router-dom";
+import { Navigate, useNavigate } from "react-router-dom";
 import { setCartProducts } from "../Cart/SetCartProducts";
+import { setWishlistProducts } from "../Wishlist/SetWishlistProducts";
+import { useAuthContext } from "../../context/auth-context";
 
 const ProductsList = () => {
   const { state, dispatch } = useDataContext();
-  const navitageToCart = useNavigate();
+  const {
+    authState: { token },
+  } = useAuthContext();
+  const navigate = useNavigate();
   const sortedData = getSortedData(state, state.products);
   const filteredData = getFilteredData(
     sortedData,
@@ -18,17 +23,18 @@ const ProductsList = () => {
 
   const checkItemInCart = (id) =>
     state.cartItem.some((dataCart) => dataCart._id === id);
-
-  const cartBtnHandler = async (product) => {
-    let localToken = localStorage.getItem("token");
-    if (localToken) {
-      const response = await setCartProducts(product, localToken);
-      if (response.status === 201) {
-        dispatch({ type: "ADD_TO_CART", payload: response.data.cart });
-      }
+  const checkItemInWishlist = (id) =>
+    state.wishlistItem.some((dataWishlist) => dataWishlist._id === id);
+  const cartBtnHandler = (product) => {
+    if (token) {
+      setCartProducts(product, token, dispatch);
     }
   };
-
+  const wishlistBtnHandler = (product) => {
+    if (token) {
+      setWishlistProducts(product, token, dispatch);
+    }
+  };
   return (
     <div>
       <section className='main-prod-section'>
@@ -59,14 +65,40 @@ const ProductsList = () => {
                         <i className='fad fa-search iconCard'></i>
                       </button>
 
-                      <button className='productQuickView'>
-                        <i className='far fa-heart iconCard'></i>
-                      </button>
+                      {checkItemInWishlist(items._id) ? (
+                        <>
+                          <button
+                            className='productQuickView'
+                            onClick={() =>
+                              token ? navigate("/wishlist") : navigate("/login")
+                            }>
+                            <i class='fas  fa-heart  iconCard'></i>
+                          </button>
+                        </>
+                      ) : (
+                        <>
+                          <button
+                            className='productQuickView'
+                            onClick={() =>
+                              token ? (
+                                wishlistBtnHandler(items)
+                              ) : (
+                                <>
+                                  {(navigate("/login"), alert("LOGIN PLEASE"))}
+                                </>
+                              )
+                            }>
+                            <i className='far fa-heart iconCard'></i>
+                          </button>
+                        </>
+                      )}
                       {checkItemInCart(items._id) ? (
                         <>
                           <button
                             className='productQuickView'
-                            onClick={() => navitageToCart("/cart")}>
+                            onClick={() =>
+                              token ? navigate("/cart") : navigate("/login")
+                            }>
                             <i class='fas fa-shopping-bag iconCard'></i>
                           </button>
                         </>
@@ -74,7 +106,15 @@ const ProductsList = () => {
                         <>
                           <button
                             className='productQuickView'
-                            onClick={() => cartBtnHandler(items)}
+                            onClick={() =>
+                              token ? (
+                                cartBtnHandler(items)
+                              ) : (
+                                <>
+                                  {(navigate("/login"), alert("LOGIN PLEASE"))}
+                                </>
+                              )
+                            }
                             disabled={items.inStock ? "" : true}>
                             <i
                               className='far fa-shopping-bag iconCard'

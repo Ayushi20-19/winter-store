@@ -1,11 +1,15 @@
 import React from "react";
 import { NavLink, useNavigate } from "react-router-dom";
 import { useAuthContext } from "../../context/auth-context";
+import { useDataContext } from "../../context/data-context";
 
 const Navbar = () => {
   const navigate = useNavigate();
   const { authDispatch } = useAuthContext();
-  let authToken = localStorage.getItem("token");
+  const { dispatch } = useDataContext();
+  const {
+    authState: { token },
+  } = useAuthContext();
   const clearTokenFromStorage = () => {
     localStorage.removeItem("token");
     localStorage.removeItem("user");
@@ -13,6 +17,7 @@ const Navbar = () => {
     authDispatch({
       type: "LOG_OUT",
     });
+    dispatch({ type: "LOG_OUT" });
   };
 
   return (
@@ -66,7 +71,7 @@ const Navbar = () => {
               </NavLink>
             </li>
             <li>
-              {authToken ? (
+              {token ? (
                 <NavLink
                   to='/login'
                   onClick={clearTokenFromStorage}
