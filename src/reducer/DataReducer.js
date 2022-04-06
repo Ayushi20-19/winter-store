@@ -33,9 +33,6 @@ export const DataReducer = (state, { type, payload }) => {
     case "REMOVE_FROM_WISHLIST":
       return { ...state, wishlistItem: payload };
 
-    // case "MOVE_TO_CART":
-    //   return { ...state, cartItem: payload };
-
     //case: product filters function trigger
     case "SORT": {
       if (payload === "HIGH_TO_LOW") return { ...state, sortBy: "HIGH_TO_LOW" };
@@ -71,7 +68,19 @@ export const DataReducer = (state, { type, payload }) => {
           fastDelivery: false,
         },
       };
-
+    case "LOG_OUT":
+      return {
+        ...state,
+        cartItem: [],
+        wishlistItem: [],
+        priceRange: "",
+        sortBy: "",
+        filters: {
+          filterByCategories: [],
+          includeOutOfStock: false,
+          fastDelivery: false,
+        },
+      };
     default:
       return state;
   }

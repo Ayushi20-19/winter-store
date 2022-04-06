@@ -2,7 +2,7 @@ import React from "react";
 import "../Product/Css/productlist.css";
 import { useDataContext } from "../../context/data-context";
 import { getSortedData, getFilteredData, getPriceRangeData } from "./Filters";
-import { useNavigate } from "react-router-dom";
+import { Navigate, useNavigate } from "react-router-dom";
 import { setCartProducts } from "../Cart/SetCartProducts";
 import { setWishlistProducts } from "../Wishlist/SetWishlistProducts";
 import { useAuthContext } from "../../context/auth-context";
@@ -12,7 +12,7 @@ const ProductsList = () => {
   const {
     authState: { token },
   } = useAuthContext();
-  const navitage = useNavigate();
+  const navigate = useNavigate();
   const sortedData = getSortedData(state, state.products);
   const filteredData = getFilteredData(
     sortedData,
@@ -64,11 +64,14 @@ const ProductsList = () => {
                       <button className='productQuickView '>
                         <i className='fad fa-search iconCard'></i>
                       </button>
+
                       {checkItemInWishlist(items._id) ? (
                         <>
                           <button
                             className='productQuickView'
-                            onClick={() => navitage("/wishlist")}>
+                            onClick={() =>
+                              token ? navigate("/wishlist") : navigate("/login")
+                            }>
                             <i class='fas  fa-heart  iconCard'></i>
                           </button>
                         </>
@@ -76,17 +79,22 @@ const ProductsList = () => {
                         <>
                           <button
                             className='productQuickView'
-                            onClick={() => wishlistBtnHandler(items)}>
+                            onClick={() =>
+                              token
+                                ? wishlistBtnHandler(items)
+                                : navigate("/login")
+                            }>
                             <i className='far fa-heart iconCard'></i>
                           </button>
                         </>
                       )}
-
                       {checkItemInCart(items._id) ? (
                         <>
                           <button
                             className='productQuickView'
-                            onClick={() => navitage("/cart")}>
+                            onClick={() =>
+                              token ? navigate("/cart") : navigate("/login")
+                            }>
                             <i class='fas fa-shopping-bag iconCard'></i>
                           </button>
                         </>
@@ -94,7 +102,9 @@ const ProductsList = () => {
                         <>
                           <button
                             className='productQuickView'
-                            onClick={() => cartBtnHandler(items)}
+                            onClick={() =>
+                              token ? cartBtnHandler(items) : navigate("/login")
+                            }
                             disabled={items.inStock ? "" : true}>
                             <i
                               className='far fa-shopping-bag iconCard'
