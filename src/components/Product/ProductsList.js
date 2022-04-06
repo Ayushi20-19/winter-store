@@ -80,9 +80,13 @@ const ProductsList = () => {
                           <button
                             className='productQuickView'
                             onClick={() =>
-                              token
-                                ? wishlistBtnHandler(items)
-                                : navigate("/login")
+                              token ? (
+                                wishlistBtnHandler(items)
+                              ) : (
+                                <>
+                                  {(navigate("/login"), alert("LOGIN PLEASE"))}
+                                </>
+                              )
                             }>
                             <i className='far fa-heart iconCard'></i>
                           </button>
@@ -103,7 +107,13 @@ const ProductsList = () => {
                           <button
                             className='productQuickView'
                             onClick={() =>
-                              token ? cartBtnHandler(items) : navigate("/login")
+                              token ? (
+                                cartBtnHandler(items)
+                              ) : (
+                                <>
+                                  {(navigate("/login"), alert("LOGIN PLEASE"))}
+                                </>
+                              )
                             }
                             disabled={items.inStock ? "" : true}>
                             <i
