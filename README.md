@@ -18,12 +18,13 @@
 ---
 
 ## Features
-<li>Login Signup<li>
-<li>Add products to cart only when user is login<li>
-<li>Add products to wishlist only when user is login<li>
-<li>Apply Filters and clear filters<li>
-<li>Single product page<li>
+<li>Login Signup</li>
+<li>Add products to cart only when user is login</li>
+<li>Add products to wishlist only when user is login</li>
+<li>Apply Filters and clear filters</li>
+<li>Single product page</li>
 ---
+
 ## Fully responsive designs and flexible UI
 ![image](https://user-images.githubusercontent.com/50084909/162217148-198331b7-d29c-4697-a3a8-e7e20715c81a.png)
 ![image](https://user-images.githubusercontent.com/50084909/162217178-90f2714e-a9b0-4d5b-a54d-e8f59911cfa0.png)
