@@ -46,24 +46,26 @@ const CartCard = ({
               +
             </button>
           </div>
-          <div class='btnWrapperEcom '>
+          <div className='btnWrapperEcom '>
             {checkItemInWishlist(id) ? (
               <>
-                <button class='btn-cart' onClick={() => navigate("/wishlist")}>
+                <button
+                  className='btn-cart'
+                  onClick={() => navigate("/wishlist")}>
                   Go To Wishlist
                 </button>
               </>
             ) : (
               <>
                 <button
-                  class='btn-cart'
+                  className='btn-cart'
                   onClick={() => setWishlistProducts(product, token, dispatch)}>
                   Add to WishList
                 </button>
               </>
             )}
 
-            <button class='btn-cart' onClick={() => removeFromCart(id)}>
+            <button className='btn-cart' onClick={() => removeFromCart(id)}>
               Remove From Cart
             </button>
           </div>

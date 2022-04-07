@@ -23,32 +23,34 @@ const WishlistCard = ({
     state.cartItem.some((dataCart) => dataCart._id === id);
   return (
     <div>
-      <div class='card-wrapper margin-1'>
-        <div class='element'>
+      <div className='card-wrapper margin-1'>
+        <div className='element'>
           <img src={image} alt={name} />
         </div>
-        <div class='content-ecard'>
+        <div className='content-ecard'>
           <span>{name}</span>
           <p>Description of product</p>
         </div>
-        <div class='btns-wrapper-ecom'>
+        <div className='btns-wrapper-ecom'>
           <span>${price}</span>
           <span>4 stars</span>
         </div>
-        <div class='btn-wrapper'>
-          <button class='btn-cart' onClick={() => removeFromWishlist(id)}>
+        <div className='btn-wrapper'>
+          <button className='btn-cart' onClick={() => removeFromWishlist(id)}>
             Remove
           </button>
           {checkItemInCart(id) ? (
             <>
-              <button class='btn-cart' onClick={() => navitageToCart("/cart")}>
+              <button
+                className='btn-cart'
+                onClick={() => navitageToCart("/cart")}>
                 Go To Cart
               </button>
             </>
           ) : (
             <>
               <button
-                class='btn-cart'
+                className='btn-cart'
                 disabled={inStock ? "" : true}
                 style={inStock ? null : { cursor: "not-allowed" }}
                 onClick={() => setCartProducts(product, token, dispatch)}>

@@ -1,0 +1,27 @@
+.sprod-img {
+  height: 28rem;
+  width: 40%;
+}
+.sprod-img img {
+  height: 100%;
+  width: 100%;
+  object-fit: contain;
+}
+.spod-content {
+  width: 50%;
+}
+
+@media only screen and (max-width: 800px) {
+  .sprod-dis {
+    flex-direction: column;
+  }
+  .sprod-img {
+    height: 28rem;
+    width: 100%;
+  }
+  .spod-content {
+    width: 90%;
+    margin: auto;
+    margin-top: 1rem;
+  }
+}
