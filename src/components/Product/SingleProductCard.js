@@ -12,10 +12,6 @@ const SingleProductCard = (product) => {
   } = useAuthContext();
   const checkItemInCart = (id) =>
     state.cartItem.some((dataCart) => dataCart._id === id);
-  console.log(
-    "🚀 ~ file: SingleProductCard.js ~ line 4 ~ SingleProductCard ~ product",
-    product
-  );
 
   return (
     <div>
