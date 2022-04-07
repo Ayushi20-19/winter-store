@@ -30,21 +30,21 @@ const ProductCard = (product) => {
   };
   return (
     <>
-      <div
-        className='card-wrapper'
-        onClick={() => navigate(`/productListing/${product._id}`)}
-        key={product.id}>
+      <div className='card-wrapper' key={product.id}>
         <div className='element'>
           <img src={product.productImg} alt='product img' />
         </div>
-        <div className='content-ecard'>
-          <span>{product.title}</span>
-          <p>{product.description}</p>
+        <div onClick={() => navigate(`/productListing/${product._id}`)}>
+          <div className='content-ecard'>
+            <span>{product.title}</span>
+            <p>{product.description}</p>
+          </div>
+          <div className='btns-wrapper-ecom'>
+            <span>₹{product.price}</span>
+            <span>{product.stars} stars</span>
+          </div>
         </div>
-        <div className='btns-wrapper-ecom'>
-          <span>₹{product.price}</span>
-          <span>{product.stars} stars</span>
-        </div>
+
         {product.inStock ? null : (
           <div className='outOfStock'>Out Of Stock</div>
         )}
