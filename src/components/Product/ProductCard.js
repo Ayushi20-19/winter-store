@@ -1,25 +1,117 @@
 import React from "react";
 import "../Product/Css/productcard.css";
+import { useDataContext } from "../../context/data-context";
 
-const ProductCard = () => {
+import { useNavigate } from "react-router-dom";
+import { setCartProducts } from "../Cart/SetCartProducts";
+import { setWishlistProducts } from "../Wishlist/SetWishlistProducts";
+import { useAuthContext } from "../../context/auth-context";
+
+const ProductCard = (product) => {
+  const { state, dispatch } = useDataContext();
+  const {
+    authState: { token },
+  } = useAuthContext();
+  const navigate = useNavigate();
+
+  const checkItemInCart = (id) =>
+    state.cartItem.some((dataCart) => dataCart._id === id);
+  const checkItemInWishlist = (id) =>
+    state.wishlistItem.some((dataWishlist) => dataWishlist._id === id);
+  const cartBtnHandler = (product) => {
+    if (token) {
+      setCartProducts(product, token, dispatch);
+    }
+  };
+  const wishlistBtnHandler = (product) => {
+    if (token) {
+      setWishlistProducts(product, token, dispatch);
+    }
+  };
   return (
     <>
-      <div className='card-wrapper'>
+      <div className='card-wrapper' key={product.id}>
         <div className='element'>
-          <img
-            src='https://images.unsplash.com/photo-1554568218-ffd1e72a2151?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxjb2xsZWN0aW9uLXBhZ2V8OHw0NTg1MDAxfHxlbnwwfHx8fA%3D%3D&auto=format&fit=crop&w=400&q=60'
-            alt='product img'
-          />
+          <img src={product.productImg} alt='product img' />
         </div>
         <div className='content-ecard'>
-          <span>title of product</span>
-          <p>Description of product</p>
+          <span>{product.title}</span>
+          <p>{product.description}</p>
         </div>
         <div className='btns-wrapper-ecom'>
-          <span>$50</span>
-          <span>4 stars</span>
+          <span>₹{product.price}</span>
+          <span>{product.stars} stars</span>
         </div>
-        <button className='btn primary btn-ecom'>Add to Cart</button>
+        {product.inStock ? null : (
+          <div className='outOfStock'>Out Of Stock</div>
+        )}
+        <div className='overlay'>
+          <button className='productQuickView '>
+            <i className='fad fa-search iconCard'></i>
+          </button>
+
+          {checkItemInWishlist(product._id) ? (
+            <>
+              <button
+                className='productQuickView'
+                onClick={() =>
+                  token ? navigate("/wishlist") : navigate("/login")
+                }>
+                <i class='fas  fa-heart  iconCard'></i>
+              </button>
+            </>
+          ) : (
+            <>
+              <button
+                className='productQuickView'
+                onClick={() =>
+                  token ? (
+                    wishlistBtnHandler(product)
+                  ) : (
+                    <>{(navigate("/login"), alert("LOGIN PLEASE"))}</>
+                  )
+                }>
+                <i className='far fa-heart iconCard'></i>
+              </button>
+            </>
+          )}
+          {checkItemInCart(product._id) ? (
+            <>
+              <button
+                className='productQuickView'
+                onClick={() =>
+                  token ? navigate("/cart") : navigate("/login")
+                }>
+                <i class='fas fa-shopping-bag iconCard'></i>
+              </button>
+            </>
+          ) : (
+            <>
+              <button
+                className='productQuickView'
+                onClick={() =>
+                  token ? (
+                    cartBtnHandler(product)
+                  ) : (
+                    <>{(navigate("/login"), alert("LOGIN PLEASE"))}</>
+                  )
+                }
+                disabled={product.inStock ? "" : true}>
+                <i
+                  className='far fa-shopping-bag iconCard'
+                  style={
+                    product.inStock ? null : { cursor: "not-allowed" }
+                  }></i>
+              </button>
+            </>
+          )}
+
+          <button
+            className='productQuickView'
+            onClick={() => navigate(`/productListing/${product._id}`)}>
+            <i className='far fa-expand-arrows iconCard'></i>
+          </button>
+        </div>
       </div>
     </>
   );
