@@ -23,7 +23,9 @@ const Navbar = () => {
   return (
     <div>
       <div className='navbar'>
-        <h5 className='logo'>LOGO</h5>
+        <div className='brandname'>
+          <h3>Winter Store</h3>
+        </div>
         <nav>
           <ul>
             <li>
