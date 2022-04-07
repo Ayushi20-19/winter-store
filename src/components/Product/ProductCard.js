@@ -57,7 +57,7 @@ const ProductCard = (product) => {
                 onClick={() =>
                   token ? navigate("/wishlist") : navigate("/login")
                 }>
-                <i class='fas  fa-heart  iconCard'></i>
+                <i className='fas  fa-heart  iconCard'></i>
               </button>
             </>
           ) : (
@@ -82,7 +82,7 @@ const ProductCard = (product) => {
                 onClick={() =>
                   token ? navigate("/cart") : navigate("/login")
                 }>
-                <i class='fas fa-shopping-bag iconCard'></i>
+                <i className='fas fa-shopping-bag iconCard'></i>
               </button>
             </>
           ) : (
