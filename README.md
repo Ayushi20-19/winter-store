@@ -23,6 +23,7 @@
 <li>Add products to wishlist only when user is login</li>
 <li>Apply Filters and clear filters</li>
 <li>Single product page</li>
+
 ---
 
 ## Fully responsive designs and flexible UI
