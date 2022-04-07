@@ -30,7 +30,10 @@ const ProductCard = (product) => {
   };
   return (
     <>
-      <div className='card-wrapper' key={product.id}>
+      <div
+        className='card-wrapper'
+        onClick={() => navigate(`/productListing/${product._id}`)}
+        key={product.id}>
         <div className='element'>
           <img src={product.productImg} alt='product img' />
         </div>
