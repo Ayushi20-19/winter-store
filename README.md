@@ -11,20 +11,18 @@
 ---
 ### Technologies Used
 
-- HTML
-- CSS/ blosson UI Library
-- JavaScript
 - React
+- CSS/ blosson UI Library
 - mockbee
 
 ---
 
 ## Features
-Login Signup
-Add products to cart only when user is login
-Add products to wishlist only when user is login
-Apply Filters and clear filters
-Single product page
+<li>Login Signup<li>
+<li>Add products to cart only when user is login<li>
+<li>Add products to wishlist only when user is login<li>
+<li>Apply Filters and clear filters<li>
+<li>Single product page<li>
 ---
 ## Fully responsive designs and flexible UI
 ![image](https://user-images.githubusercontent.com/50084909/162217148-198331b7-d29c-4697-a3a8-e7e20715c81a.png)
