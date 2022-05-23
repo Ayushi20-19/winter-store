@@ -1,13 +1,6 @@
-import { useDataContext } from "../../context/data-context";
-import { DataReducer } from "../../reducer/DataReducer";
 import { initializeRazorpay } from "./initializeRazorpay";
 
 const makePayment = async ({ totalPrice, dispatch }) => {
-  console.log(
-    "🚀 ~ file: makePayment.js ~ line 4 ~ makePayment ~ amount",
-    totalPrice
-  );
-
   const res = await initializeRazorpay();
 
   if (!res) {
