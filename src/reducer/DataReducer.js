@@ -16,7 +16,8 @@ export const DataReducer = (state, { type, payload }) => {
 
     case "REMOVE_FROM_CART":
       return { ...state, cartItem: payload };
-
+    case "CLEAR_FROM_CART":
+      return { ...state, cartItem: [] };
     case "INCREASE_ITEM_QUANTITY":
       return { ...state, cartItem: payload };
 
