@@ -1,6 +1,6 @@
 import { initializeRazorpay } from "./initializeRazorpay";
 
-const makePayment = async ({ totalPrice, dispatch }) => {
+const makePayment = async ({ totalPrice, dispatch, token }) => {
   const res = await initializeRazorpay();
 
   if (!res) {
@@ -22,7 +22,7 @@ const makePayment = async ({ totalPrice, dispatch }) => {
       alert(
         `Your payment is done with orderno-,${response.razorpay_payment_id}`
       );
-      dispatch({ type: "CLEAR_FROM_CART" });
+      dispatch({ type: "CLEAR_FROM_CART", payload: token });
     },
     prefill: {
       name: "Ayushi Verma",

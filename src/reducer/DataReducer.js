@@ -1,3 +1,10 @@
+import axios from "axios";
+const clearCartHandler = (token) => {
+  axios.delete("/api/user/cart/all", {
+    headers: { authorization: token },
+  });
+};
+
 export const DataReducer = (state, { type, payload }) => {
   switch (type) {
     //case: data like, product and category relater api calls
@@ -16,8 +23,11 @@ export const DataReducer = (state, { type, payload }) => {
 
     case "REMOVE_FROM_CART":
       return { ...state, cartItem: payload };
-    case "CLEAR_FROM_CART":
+    case "CLEAR_FROM_CART": {
+      clearCartHandler(payload);
       return { ...state, cartItem: [] };
+    }
+
     case "INCREASE_ITEM_QUANTITY":
       return { ...state, cartItem: payload };
 
