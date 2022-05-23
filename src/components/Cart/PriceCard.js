@@ -1,12 +1,18 @@
 import React from "react";
 import "./cart.css";
-
+import { makePayment } from "../Checkout/makePayment";
+import { useDataContext } from "../../context/data-context";
+import { useAuthContext } from "../../context/auth-context";
 const PriceCard = ({
   cartQuantity,
   itemPrice,
   discountedPrice,
   totalPrice,
 }) => {
+  const { dispatch } = useDataContext();
+  const {
+    authState: { token },
+  } = useAuthContext();
   return (
     <div>
       <div className='price-card'>
@@ -37,7 +43,9 @@ const PriceCard = ({
             {discountedPrice === itemPrice ? 0 : itemPrice - discountedPrice} in
             this order
           </div>
-          <button className='btn primary border-radius-0 place-order'>
+          <button
+            onClick={() => makePayment({ totalPrice, dispatch, token })}
+            className='btn primary border-radius-0 place-order'>
             Place Order
           </button>
         </div>
