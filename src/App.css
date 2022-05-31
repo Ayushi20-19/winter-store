@@ -13,7 +13,12 @@
 .App {
   font-family: "Karla", sans-serif;
 }
-
+.navbar {
+  height: 4rem !important;
+}
+nav ul li a {
+  font-size: 1.2rem;
+}
 iframe {
   pointer-events: none;
 }
