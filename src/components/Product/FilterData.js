@@ -50,6 +50,7 @@ const FilterData = () => {
                   <ul>
                     <li key={items.id}>
                       <input
+                        id={items.categoryName}
                         type='checkbox'
                         checked={state.filters.filterByCategories.includes(
                           items.categoryName
@@ -61,7 +62,9 @@ const FilterData = () => {
                           });
                         }}
                       />
-                      {items.categoryName}
+                      <label htmlFor={items.categoryName}>
+                        {items.categoryName}
+                      </label>
                     </li>
                   </ul>
                 </>
@@ -76,6 +79,7 @@ const FilterData = () => {
                 <input
                   type='checkbox'
                   checked={state.filters.OutOfStock}
+                  id='out-of-stock'
                   onChange={() =>
                     dispatch({
                       type: "OUT_OF_STOCK",
@@ -83,11 +87,12 @@ const FilterData = () => {
                     })
                   }
                 />
-                Exclude Out of Stock
+                <label htmlFor='out-of-stock'>Remove out of Stock</label>
               </li>
               <li>
                 <input
                   type='checkbox'
+                  id='fast-delivery'
                   checked={state.filters.fastDelivery}
                   onChange={() =>
                     dispatch({
@@ -96,32 +101,11 @@ const FilterData = () => {
                     })
                   }
                 />
-                Fast Delivery
+                <label htmlFor='fast-delivery'>Fast Delivery</label>
               </li>
             </ul>
           </div>
           <hr className='filterhr' />
-          {/* <div className='filters'>
-            <h1>Rating</h1>
-            <ul>
-              <li>
-                <input type='radio' name='rating' /> 5 start
-              </li>
-              <li>
-                <input type='radio' name='rating' /> 4 start
-              </li>
-              <li>
-                <input type='radio' name='rating' /> 3 start
-              </li>
-              <li>
-                <input type='radio' name='rating' /> 2 start
-              </li>
-              <li>
-                <input type='radio' name='rating' /> 1 start
-              </li>
-            </ul>
-          </div> 
-          <hr className='filterhr' />*/}
 
           <div className='filters'>
             <h1>SortBy</h1>
@@ -130,6 +114,7 @@ const FilterData = () => {
                 <input
                   type='radio'
                   name='sortby'
+                  id='low-to-high'
                   checked={state.sortBy === "LOW_TO_HIGH"}
                   onClick={() =>
                     dispatch({
@@ -138,12 +123,13 @@ const FilterData = () => {
                     })
                   }
                 />
-                Low to high
+                <label htmlFor='low-to-high'>Low to high</label>
               </li>
               <li>
                 <input
                   type='radio'
                   name='sortby'
+                  id='high-to-low'
                   checked={state.sortBy === "HIGH_TO_LOW"}
                   onClick={() =>
                     dispatch({
@@ -152,7 +138,7 @@ const FilterData = () => {
                     })
                   }
                 />
-                High to low
+                <label htmlFor='high-to-low'>High to low</label>
               </li>
             </ul>
           </div>
