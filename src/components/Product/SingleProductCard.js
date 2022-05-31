@@ -3,6 +3,7 @@ import { useNavigate } from "react-router-dom";
 import { useAuthContext } from "../../context/auth-context";
 import { useDataContext } from "../../context/data-context";
 import { setCartProducts } from "../Cart/SetCartProducts";
+import { setWishlistProducts } from "../Wishlist/SetWishlistProducts";
 import "./Css/singleproductcard.css";
 const SingleProductCard = (product) => {
   const { state, dispatch } = useDataContext();
@@ -12,7 +13,13 @@ const SingleProductCard = (product) => {
   } = useAuthContext();
   const checkItemInCart = (id) =>
     state.cartItem.some((dataCart) => dataCart._id === id);
-
+  const checkItemInWishlist = (id) =>
+    state.wishlistItem.some((dataWishlist) => dataWishlist._id === id);
+  const wishlistBtnHandler = (product) => {
+    if (token) {
+      setWishlistProducts(product, token, dispatch);
+    }
+  };
   return (
     <div>
       <section className='margin-top-2'>
@@ -24,29 +31,42 @@ const SingleProductCard = (product) => {
             <div>
               <h1>{product.title}</h1>
             </div>
-            <div className='margin-top-1'>
-              Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
-              eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut
-              enim ad minim veniam, quis nostrud exercitation ullamco laboris
-              nisi ut aliquip ex ea commodo consequat.
-            </div>
-
-            <div className='margin-top-1'>
-              Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
-              eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut
-              enim ad minim veniam, quis nostrud exercitation ullamco laboris
-              nisi ut aliquip ex ea commodo consequat.
-            </div>
+            <div className='margin-top-1'>{product.longDescription}</div>
 
             <div className='btns-wrapper-ecom margin-top-3'>
-              <h3>${product.price}</h3>
+              <h3>₹{product.price}</h3>
               <h3>{product.stars} stars rating</h3>
             </div>
             <div className='btn-sprod-wrapper margin-top-3'>
-              {checkItemInCart(product._id) ? (
+              {checkItemInWishlist(product._id) ? (
                 <>
                   <button
                     className='btn secondary border-radius-0'
+                    onClick={() =>
+                      token ? navigate("/wishlist") : navigate("/login")
+                    }>
+                    Go to Wishlist
+                  </button>
+                </>
+              ) : (
+                <>
+                  <button
+                    className='btn secondary border-radius-0'
+                    onClick={() =>
+                      token ? (
+                        wishlistBtnHandler(product)
+                      ) : (
+                        <>{(navigate("/login"), alert("LOGIN PLEASE"))}</>
+                      )
+                    }>
+                    Add to Wishlist
+                  </button>
+                </>
+              )}
+              {checkItemInCart(product._id) ? (
+                <>
+                  <button
+                    className='btn primary  border-radius-0'
                     onClick={() =>
                       token ? navigate("/cart") : navigate("/login")
                     }>
@@ -56,7 +76,7 @@ const SingleProductCard = (product) => {
               ) : (
                 <>
                   <button
-                    className='btn secondary border-radius-0'
+                    className='btn primary border-radius-0'
                     style={product.inStock ? null : { cursor: "not-allowed" }}
                     onClick={() =>
                       token ? (
@@ -70,7 +90,7 @@ const SingleProductCard = (product) => {
                   </button>
                 </>
               )}
-              <button className='btn primary border-radius-0'>Buy Now</button>
+              {/* <button className='btn primary border-radius-0'>Buy Now</button> */}
             </div>
           </div>
         </div>

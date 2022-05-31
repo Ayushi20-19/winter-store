@@ -49,7 +49,8 @@ export const DataReducer = (state, { type, payload }) => {
       if (payload === "HIGH_TO_LOW") return { ...state, sortBy: "HIGH_TO_LOW" };
       if (payload === "LOW_TO_HIGH") return { ...state, sortBy: "LOW_TO_HIGH" };
     }
-
+    case "FILTER_BY_CATEGORY":
+      return;
     case "OUT_OF_STOCK":
       return {
         ...state,

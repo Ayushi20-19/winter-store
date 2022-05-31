@@ -1,7 +1,6 @@
 import React from "react";
 import "../Product/Css/productcard.css";
 import { useDataContext } from "../../context/data-context";
-
 import { useNavigate } from "react-router-dom";
 import { setCartProducts } from "../Cart/SetCartProducts";
 import { setWishlistProducts } from "../Wishlist/SetWishlistProducts";

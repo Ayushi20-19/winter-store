@@ -51,7 +51,7 @@ const FilterData = () => {
                     <li key={items.id}>
                       <input
                         type='checkbox'
-                        // checked={items.categoryName}
+                        checked={items.categoryName}
                         onChange={() =>
                           dispatch({
                             type: "FILTER_BY_CATEGORY",
