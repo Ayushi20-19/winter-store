@@ -49,8 +49,27 @@ export const DataReducer = (state, { type, payload }) => {
       if (payload === "HIGH_TO_LOW") return { ...state, sortBy: "HIGH_TO_LOW" };
       if (payload === "LOW_TO_HIGH") return { ...state, sortBy: "LOW_TO_HIGH" };
     }
-    case "FILTER_BY_CATEGORY":
-      return;
+    case "FILTER_BY_CATEGORIES": {
+      return state.filters.filterByCategories.includes(payload)
+        ? {
+            ...state,
+            filters: {
+              ...state.filters,
+              filterByCategories: state.filters.filterByCategories.filter(
+                (item) => item !== payload
+              ),
+            },
+          }
+        : {
+            ...state,
+            filters: {
+              ...state.filters,
+              filterByCategories:
+                state.filters.filterByCategories.concat(payload),
+            },
+          };
+    }
+
     case "OUT_OF_STOCK":
       return {
         ...state,

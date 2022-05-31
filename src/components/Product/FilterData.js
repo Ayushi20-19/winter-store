@@ -42,8 +42,8 @@ const FilterData = () => {
             />
           </div>
           <hr className='filterhr' />
-          {/* <div className='filters'>
-            <h1>Category</h1>
+          <div className='filters'>
+            <h1>Categories</h1>
             {state.categories.map((items) => {
               return (
                 <>
@@ -51,13 +51,15 @@ const FilterData = () => {
                     <li key={items.id}>
                       <input
                         type='checkbox'
-                        checked={items.categoryName}
-                        onChange={() =>
+                        checked={state.filters.filterByCategories.includes(
+                          items.categoryName
+                        )}
+                        onChange={() => {
                           dispatch({
-                            type: "FILTER_BY_CATEGORY",
+                            type: "FILTER_BY_CATEGORIES",
                             payload: items.categoryName,
-                          })
-                        }
+                          });
+                        }}
                       />
                       {items.categoryName}
                     </li>
@@ -65,8 +67,8 @@ const FilterData = () => {
                 </>
               );
             })}
-          </div> */}
-
+          </div>
+          <hr className='filterhr' />
           <div className='filters'>
             <h1>Type</h1>
             <ul>

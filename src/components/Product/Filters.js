@@ -15,16 +15,21 @@ const getSortedData = (state, data) => {
   }
 };
 
+const getCategoryFilteredData = (state, data) => {
+  let filteredData = [...data];
+  if (state.filters.filterByCategories.length !== 0)
+    filteredData = filteredData.filter((product) =>
+      state.filters.filterByCategories.includes(product.categoryName)
+    );
+  return filteredData;
+};
 const getFilteredData = (data, OutOfStock, fastDelivery) => {
   let filteredData = [...data];
-  if (OutOfStock && !fastDelivery) {
+  if (OutOfStock) {
     filteredData = filteredData.filter((items) => items.inStock);
-  } else if (fastDelivery && !OutOfStock) {
+  }
+  if (fastDelivery) {
     filteredData = filteredData.filter((items) => items.fastDelivery);
-  } else if (fastDelivery && OutOfStock) {
-    filteredData = filteredData
-      .filter((items) => items.inStock)
-      .filter((items) => items.fastDelivery);
   }
   return filteredData;
 };
@@ -38,4 +43,9 @@ const getPriceRangeData = (data, priceRange) => {
   }
   return filteredData;
 };
-export { getSortedData, getFilteredData, getPriceRangeData };
+export {
+  getSortedData,
+  getFilteredData,
+  getPriceRangeData,
+  getCategoryFilteredData,
+};
