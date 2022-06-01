@@ -52,3 +52,8 @@
   font-size: 0.8rem;
   margin: auto;
 }
+@media only screen and (max-width: 800px) {
+  .row-container {
+    flex-direction: column;
+  }
+}
