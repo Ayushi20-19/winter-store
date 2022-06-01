@@ -1,7 +1,6 @@
 import React from "react";
 import "../Product/Css/productcard.css";
 import { useDataContext } from "../../context/data-context";
-
 import { useNavigate } from "react-router-dom";
 import { setCartProducts } from "../Cart/SetCartProducts";
 import { setWishlistProducts } from "../Wishlist/SetWishlistProducts";
@@ -71,7 +70,7 @@ const ProductCard = (product) => {
                   token ? (
                     wishlistBtnHandler(product)
                   ) : (
-                    <>{(navigate("/login"), alert("LOGIN PLEASE"))}</>
+                    <>{navigate("/login")}</>
                   )
                 }>
                 <i className='far fa-heart iconCard'></i>
@@ -93,11 +92,7 @@ const ProductCard = (product) => {
               <button
                 className='productQuickView'
                 onClick={() =>
-                  token ? (
-                    cartBtnHandler(product)
-                  ) : (
-                    <>{(navigate("/login"), alert("LOGIN PLEASE"))}</>
-                  )
+                  token ? cartBtnHandler(product) : <>{navigate("/login")}</>
                 }
                 disabled={product.inStock ? "" : true}>
                 <i

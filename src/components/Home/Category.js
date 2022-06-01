@@ -13,8 +13,8 @@ const Category = () => {
           </div>
           <div className='text'>
             <div className='box'>
-              <span>Theme Parties</span>
-              <p>some content here</p>
+              <span className='margin-bottom-2'>Theme Parties</span>
+              <p>Get yourself ready for a GOT theme party</p>
             </div>
           </div>
         </div>
@@ -27,8 +27,8 @@ const Category = () => {
           </div>
           <div className='text'>
             <div className='box'>
-              <span>Customize Items</span>
-              <p>some content here</p>
+              <span className='margin-bottom-1'>Gifting Items</span>
+              <p>Collection of varioes products</p>
             </div>
           </div>
         </div>

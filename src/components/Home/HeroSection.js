@@ -9,7 +9,8 @@ const HeroSection = () => {
         <div className='content'>
           <h1>Winter Store</h1>
           <p>
-            Welcome to ecom website get the exclusive products in less prices
+            Welcome to <b>Game of throne Merch Store</b>, get exclusive products
+            at minimum price.
           </p>
           <button
             className='btn primary border-radius-0'

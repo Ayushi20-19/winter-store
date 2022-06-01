@@ -3,6 +3,7 @@
 :root {
   --light-bg-color: #f9fdff;
   --primary-color: #00283b;
+  --primary-hover-color: #416271;
   --secondary-color: #006691;
   --accent-color: #f17b4c;
   --black-color: #000000;
@@ -13,7 +14,13 @@
 .App {
   font-family: "Karla", sans-serif;
 }
-
-/* iframe {
+.navbar {
+  height: 4rem !important;
+}
+nav ul li a {
+  font-size: 1.2rem;
+}
+/* 
+iframe {
   pointer-events: none;
 } */

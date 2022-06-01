@@ -9,14 +9,7 @@ const SingleProductPage = () => {
     state: { products },
   } = useDataContext();
   const product = products.find((item) => item._id === productId);
-  console.log(
-    "🚀 ~ file: SingleProductPage.js ~ line 11 ~ SingleProductPage ~ product",
-    product
-  );
-  console.log(
-    "🚀 ~ file: SingleProductPage.js ~ line 6 ~ SingleProductPage ~ productId",
-    productId
-  );
+
   return (
     <div>
       <SingleProductCard {...product} />

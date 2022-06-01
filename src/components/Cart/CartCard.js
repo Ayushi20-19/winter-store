@@ -32,7 +32,7 @@ const CartCard = ({
         <div className='cartContendWrapper'>
           <div className='cartContend'>
             <h1>{name}</h1>
-            <h3>${price}</h3>
+            <h3>₹ {price}</h3>
             <button
               className='cartQuantityBtn'
               disabled={Number(quantity) === 1 ? true : ""}
