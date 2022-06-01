@@ -13,4 +13,8 @@
   .filter {
     display: none;
   }
+  .products {
+    width: 90%;
+    margin: auto;
+  }
 }
