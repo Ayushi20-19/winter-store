@@ -1,6 +1,6 @@
 import axios from "axios";
 import React from "react";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import { useAuthContext } from "../../context/auth-context";
 import "./auth.css";
@@ -45,7 +45,9 @@ const Signup = () => {
       }
     }
   };
-
+  useEffect(() => {
+    window.scrollTo(0, 0);
+  }, []);
   return (
     <div>
       <section>

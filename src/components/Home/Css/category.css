@@ -41,14 +41,14 @@
   width: 100%;
 }
 .box span {
+  margin: auto;
+}
+.box span {
   font-size: 1.6rem;
   font-weight: 600;
   margin-bottom: 0.7rem;
 }
 .box p {
   font-size: 0.8rem;
-  margin: auto;
-}
-.box span {
   margin: auto;
 }

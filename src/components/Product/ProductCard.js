@@ -70,7 +70,7 @@ const ProductCard = (product) => {
                   token ? (
                     wishlistBtnHandler(product)
                   ) : (
-                    <>{(navigate("/login"), alert("LOGIN PLEASE"))}</>
+                    <>{navigate("/login")}</>
                   )
                 }>
                 <i className='far fa-heart iconCard'></i>
@@ -92,11 +92,7 @@ const ProductCard = (product) => {
               <button
                 className='productQuickView'
                 onClick={() =>
-                  token ? (
-                    cartBtnHandler(product)
-                  ) : (
-                    <>{(navigate("/login"), alert("LOGIN PLEASE"))}</>
-                  )
+                  token ? cartBtnHandler(product) : <>{navigate("/login")}</>
                 }
                 disabled={product.inStock ? "" : true}>
                 <i

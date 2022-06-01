@@ -56,7 +56,7 @@ const SingleProductCard = (product) => {
                       token ? (
                         wishlistBtnHandler(product)
                       ) : (
-                        <>{(navigate("/login"), alert("LOGIN PLEASE"))}</>
+                        <>{navigate("/login")}</>
                       )
                     }>
                     Add to Wishlist
@@ -82,7 +82,7 @@ const SingleProductCard = (product) => {
                       token ? (
                         setCartProducts(product, token, dispatch)
                       ) : (
-                        <>{(navigate("/login"), alert("LOGIN PLEASE"))}</>
+                        <>{navigate("/login")}</>
                       )
                     }
                     disabled={product.inStock ? "" : true}>

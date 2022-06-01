@@ -10,10 +10,16 @@ const OurStory = () => {
         </div>
         <div className='des'>
           <p>
-            Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
-            eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim
-            ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut
-            aliquip ex ea commodo consequat.
+            We are the Game of Thrones merch store, Game of Thrones is an
+            American fantasy drama television series created by David Benioff
+            and D. B. Weiss for HBO. It is an adaptation of A Song of Ice and
+            Fire, a series of fantasy novels by George R. R. Martin, the first
+            of which is A Game of Thrones.
+          </p>
+          <p>
+            We here have many product, which may fantasize you. You can buy
+            these product for gifting, We have many varities and ensured the
+            best qualitues.
           </p>
         </div>
         <div className='brandname'>

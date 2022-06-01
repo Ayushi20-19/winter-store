@@ -24,13 +24,13 @@ const FilterData = () => {
           <div className='filters'>
             <h1>Price</h1>
             <div className=' price-range'>
-              <span>100</span>
+              <span>50</span>
               <span>1000</span>
             </div>
             <input
               type='range'
               className='slider'
-              min='100'
+              min='70'
               max='1000'
               value={state.priceRange === "" ? 1000 : state.priceRange}
               onChange={(e) =>

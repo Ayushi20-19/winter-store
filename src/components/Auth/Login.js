@@ -1,6 +1,6 @@
 import axios from "axios";
 import React from "react";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import { useAuthContext } from "../../context/auth-context";
 
@@ -13,8 +13,8 @@ const Login = () => {
     password: "",
   });
   const testUser = {
-    email: "adarshbalak@gmail.com",
-    password: "adarshBalaki123",
+    email: "testuser@gmail.com",
+    password: "testuser123",
   };
   const setUserDetailHandler = (e) => {
     const { name, value } = e.target;
@@ -35,7 +35,7 @@ const Login = () => {
       if (response.status === 200) {
         localStorage.setItem("token", response.data.encodedToken);
         localStorage.setItem("user", JSON.stringify(response.data));
-        navigateHome("/");
+        navigateHome("/productListing");
         authDispatch({
           type: "LOG_IN",
           payload: {
@@ -48,6 +48,9 @@ const Login = () => {
       console.warn(err);
     }
   };
+  useEffect(() => {
+    window.scrollTo(0, 0);
+  }, []);
   return (
     <div>
       <section>

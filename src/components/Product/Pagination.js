@@ -1,10 +1,10 @@
 import React from "react";
 import { useState } from "react";
 import "./Css/pagination.css";
-const Pagination = ({ postsPerPage, totalPosts, paginate }) => {
+const Pagination = ({ prodPerPage, totalProd, paginate }) => {
   const pageNumbers = [];
   const [isActive, setIsActive] = useState(1);
-  for (let i = 1; i <= Math.ceil(totalPosts / postsPerPage); i++) {
+  for (let i = 1; i <= Math.ceil(totalProd / prodPerPage); i++) {
     pageNumbers.push(i);
   }
 

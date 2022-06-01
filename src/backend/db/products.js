@@ -153,7 +153,7 @@ export const products = [
     description: "Redwolf branded 58mm laminated plastic badge.",
     longDescription:
       "This design come digitally printed to perfection on a premium quality 58mm badge with a matte finish.",
-    price: "38",
+    price: "58",
     categoryName: "Badges",
     productImg:
       "https://www.redwolf.in/image/cache/catalog/badges/cersei-lannister-game-of-thrones-badge-india-438x438.jpg",
