@@ -7,7 +7,7 @@ import { v4 as uuid } from "uuid";
 
 export const products = [
   {
-    _id: uuid(),
+    _id: "5166d4ef-4c4b-4955-8f7f-c925b4bea0d4c",
     title: "The Night's Watch",
     description: "Regular fit 100% Cotton Redwolf branded tees",
     longDescription:
@@ -21,7 +21,7 @@ export const products = [
     fastDelivery: false,
   },
   {
-    _id: uuid(),
+    _id: "5166d4ef-4c4b-4955-8f7f-c925b4bea0cd4",
     title: "King In The North",
     description: "Regular fit 100% Cotton Redwolf branded tees",
     longDescription:
@@ -35,7 +35,7 @@ export const products = [
     fastDelivery: true,
   },
   {
-    _id: uuid(),
+    _id: "5166d4ef-4c4b-4955-8f7f-c925bcc4bea0d4",
     title: "Arya Stark",
     description: "Redwolf branded 58mm laminated plastic badge.",
     longDescription:
@@ -49,7 +49,7 @@ export const products = [
     fastDelivery: true,
   },
   {
-    _id: uuid(),
+    _id: "5166d4ef-4c4b-4955-8f7f-c925bwdw4bea0d4",
     title: "House Targaryen",
     description: "Regular fit 100% Cotton Redwolf branded tees",
     longDescription:
@@ -63,7 +63,7 @@ export const products = [
     fastDelivery: false,
   },
   {
-    _id: uuid(),
+    _id: "5166d4ef-4c4b-4955-8f7f-c925ddb4bea0d4",
     title: "Khaleesi",
     description: "Redwolf ceramic 325ml coffee mug",
     longDescription:
@@ -77,7 +77,7 @@ export const products = [
     fastDelivery: false,
   },
   {
-    _id: uuid(),
+    _id: "5166d4ef-4c4b-4955-8f7f-c925b4bea0dsds4",
     title: "House Tyrell",
     description: "Redwolf branded 58mm laminated plastic badge.",
     longDescription:
@@ -91,7 +91,7 @@ export const products = [
     fastDelivery: false,
   },
   {
-    _id: uuid(),
+    _id: "5166d4ef-4c4b-4955-8f7f-c92cjkh5b4bea0d4",
     title: "Dracarys",
     description: "Redwolf ceramic 325ml coffee mug",
     longDescription:
@@ -105,7 +105,7 @@ export const products = [
     fastDelivery: true,
   },
   {
-    _id: uuid(),
+    _id: "5166d4ef-4c4b-4955-8f7f-c925b4bea0d4fwfo",
     title: "Tyrion Lannister",
     description: "Printed 3.5x3.5inch (9x9 cm) coaster.",
     longDescription:
@@ -119,7 +119,7 @@ export const products = [
     fastDelivery: false,
   },
   {
-    _id: uuid(),
+    _id: "5166d4ef-4c4b-4955-8f7f-c925b4bea0d487",
     title: "I drink and I know-things",
     description: "Regular fit 100% Cotton Redwolf branded tees",
     longDescription:
@@ -133,7 +133,7 @@ export const products = [
     fastDelivery: false,
   },
   {
-    _id: uuid(),
+    _id: "5166d4ef-4c4b-4955-8f7f-cnsn925b4bea0d4",
     title: "The North Remembers",
     description: "Redwolf ceramic 325ml coffee mug.",
     longDescription:
@@ -148,7 +148,7 @@ export const products = [
   },
 
   {
-    _id: uuid(),
+    _id: "5166d4ef-4c4b-4955-8f7f-c925b4beiwia0d4",
     title: "Cersei Lannister",
     description: "Redwolf branded 58mm laminated plastic badge.",
     longDescription:
@@ -163,7 +163,7 @@ export const products = [
   },
 
   {
-    _id: uuid(),
+    _id: "5166d4ef-4c4b-4955-8f7f-c925b4bea0di9i4",
     title: "House Sigil Pattern",
     description: "Redwolf ceramic 325ml coffee mug",
     longDescription:
@@ -177,7 +177,7 @@ export const products = [
     fastDelivery: false,
   },
   {
-    _id: uuid(),
+    _id: "5166d4ef-4c4b-4955-8f7f-c925b4bea0d4wii",
     title: "The Throne",
     description: "Redwolf ceramic 325ml coffee mug",
     longDescription:
@@ -191,7 +191,7 @@ export const products = [
     fastDelivery: false,
   },
   {
-    _id: uuid(),
+    _id: "5166d4ef-4c4b-4955-8f7f-c925b4bea0d4f9e90",
     title: "Valar Morghulis",
     description: "Redwolf ceramic 325ml coffee mug",
     longDescription:
@@ -205,7 +205,7 @@ export const products = [
     fastDelivery: true,
   },
   {
-    _id: uuid(),
+    _id: "5166d4ef-4c4b-4955-8f7f-c925b4bea0d4ne8",
     title: "Sigil Banner",
     description: "This is the Description",
     longDescription:
@@ -219,7 +219,7 @@ export const products = [
     fastDelivery: true,
   },
   {
-    _id: uuid(),
+    _id: "5166d4ef-4c4b-4955-8f7f-c925b4bea0d489798",
     title: "Westeros",
     description: "Redwolf ceramic 325ml coffee mug",
     longDescription:
@@ -233,7 +233,7 @@ export const products = [
     fastDelivery: true,
   },
   {
-    _id: uuid(),
+    _id: "5166d4ef-4c4b-4955-8f7f-cjfoiu0925b4bea0d4",
     title: "Beyond The Wall",
     description: "Redwolf ceramic 325ml coffee mug",
     longDescription:
@@ -247,7 +247,7 @@ export const products = [
     fastDelivery: false,
   },
   {
-    _id: uuid(),
+    _id: "5166d4ef-4c4b-4955-8f7f-c925b4bea0d4nfkllej8",
     title: "A Mind Needs Books",
     description: "Redwolf ceramic 325ml coffee mug",
     longDescription:
@@ -261,7 +261,7 @@ export const products = [
     fastDelivery: true,
   },
   {
-    _id: uuid(),
+    _id: "5166d4ef-4c4b-4955-8f7f-cfnei925b4bea0d4",
     title: "The Hound",
     description: "Printed 3.5x3.5inch (9x9 cm) coaster.",
     longDescription:
@@ -275,7 +275,7 @@ export const products = [
     fastDelivery: true,
   },
   {
-    _id: uuid(),
+    _id: "5166d4ef-4c4b-4955-8f7f-c925b4bea0d4980f",
     title: "Night King",
     description: "Redwolf branded 58mm laminated plastic badge.",
     longDescription:
@@ -289,7 +289,7 @@ export const products = [
     fastDelivery: true,
   },
   {
-    _id: uuid(),
+    _id: "5166d4ef-4c4b-4955-8f7f-c f9925b4bea0d4",
     title: "Jon Snow",
     description: "Redwolf branded 58mm laminated plastic badge.",
     longDescription:
@@ -303,7 +303,7 @@ export const products = [
     fastDelivery: true,
   },
   {
-    _id: uuid(),
+    _id: "5166d4ef-4c4b-4955-8f7f-cu8j925b4bea0d4",
     title: "Sigil Pattern",
     description: "Redwolf ceramic 325ml coffee mug",
     longDescription:
@@ -317,7 +317,7 @@ export const products = [
     fastDelivery: false,
   },
   {
-    _id: uuid(),
+    _id: "5166d4ef-4c4b-4955-8f7f-c925b4bea0mke0d4",
     title: "Drogon Fire And Blood",
     description: "Regular fit 100% Cotton Redwolf branded tees",
     longDescription:
@@ -331,7 +331,7 @@ export const products = [
     fastDelivery: true,
   },
   {
-    _id: uuid(),
+    _id: "5166d4ef-4c4b-4955-8f7f-c925b4bea0d4mi8",
     title: "The Weirwood Tree",
     description: "Regular fit 100% Cotton Redwolf branded tees",
     longDescription:
@@ -346,7 +346,7 @@ export const products = [
   },
 
   {
-    _id: uuid(),
+    _id: "5166d4ef-4c4b-4955-8fc7f-c925b4bea0d4",
     title: "Fire Blood",
     description: "Printed 3.5x3.5inch (9x9 cm) coaster.",
     longDescription:

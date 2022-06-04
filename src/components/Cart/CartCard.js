@@ -3,6 +3,7 @@ import { useNavigate } from "react-router-dom";
 import { useAuthContext } from "../../context/auth-context";
 import { useDataContext } from "../../context/data-context";
 import { setWishlistProducts } from "../Wishlist/SetWishlistProducts";
+import { debounce } from "lodash";
 import "./cartcard.css";
 
 const CartCard = ({
@@ -23,6 +24,12 @@ const CartCard = ({
   const product = state.products.find((item) => item._id === id);
   const checkItemInWishlist = (id) =>
     state.wishlistItem.some((dataWishlist) => dataWishlist._id === id);
+  const decCartDebounce = debounce(() => {
+    updateCartQuantity(id, "decrement");
+  }, 600);
+  const incCartDebounce = debounce(() => {
+    updateCartQuantity(id, "increment");
+  }, 400);
   return (
     <div>
       <div className='mainCartWrapper' key={key}>
@@ -35,14 +42,14 @@ const CartCard = ({
             <h3>₹ {price}</h3>
             <button
               className='cartQuantityBtn'
-              disabled={Number(quantity) === 1 ? true : ""}
-              onClick={() => updateCartQuantity(id, "decrement")}>
+              disabled={Number(quantity) <= 1 ? true : ""}
+              onClick={
+                Number(quantity) < 1 ? removeFromCart(id) : decCartDebounce
+              }>
               -
             </button>
             {quantity}
-            <button
-              className='cartQuantityBtn '
-              onClick={() => updateCartQuantity(id, "increment")}>
+            <button className='cartQuantityBtn ' onClick={incCartDebounce}>
               +
             </button>
           </div>
