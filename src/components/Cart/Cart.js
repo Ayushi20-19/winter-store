@@ -5,11 +5,12 @@ import "./cart.css";
 import CartCard from "./CartCard";
 import { useEffect } from "react";
 import PriceCard from "./PriceCard";
+import { useNavigate } from "react-router-dom";
 
 const Cart = () => {
   const { state, dispatch } = useDataContext();
   const localToken = localStorage.getItem("token");
-
+  const navigate = useNavigate();
   const getCartProduct = async (localToken) => {
     const response = await axios.get("/api/user/cart", {
       headers: { authorization: localToken },
@@ -102,7 +103,7 @@ const Cart = () => {
   };
 
   useEffect(() => {
-    getCartProduct(localToken);
+    if (localToken) getCartProduct(localToken);
   }, []);
 
   const { cartQuantity, itemPrice, discountedPrice, totalPrice } =
@@ -111,10 +112,32 @@ const Cart = () => {
   return (
     <div>
       <div className='heading-cart'>
-        {state.cartItem.length !== 0 ? (
-          <h1>My Cart</h1>
+        {localToken ? (
+          state.cartItem.length !== 0 ? (
+            <h1>My Cart</h1>
+          ) : (
+            <div className='flex-column flex-center'>
+              <h1
+                className='cursor-pointer'
+                onClick={() => navigate("/productListing")}>
+                Add some products to see here
+              </h1>
+              <img
+                src='https://i.pinimg.com/originals/f2/79/07/f279070acd83c478e0d00f0da39958a3.gif'
+                alt=''
+              />
+            </div>
+          )
         ) : (
-          <h1>No item in Cart</h1>
+          <div className='flex-column flex-center'>
+            <h1 className='cursor-pointer' onClick={() => navigate("/login")}>
+              Login to see Cart products
+            </h1>
+            <img
+              src='https://mir-s3-cdn-cf.behance.net/project_modules/disp/20f6fa81601861.5d041a148bd59.gif'
+              alt=''
+            />
+          </div>
         )}
       </div>
       <section className='cart-main'>

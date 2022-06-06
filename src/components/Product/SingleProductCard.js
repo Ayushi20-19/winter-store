@@ -4,10 +4,13 @@ import { useAuthContext } from "../../context/auth-context";
 import { useDataContext } from "../../context/data-context";
 import { setCartProducts } from "../Cart/SetCartProducts";
 import { setWishlistProducts } from "../Wishlist/SetWishlistProducts";
+import { debounce } from "lodash";
+import { toast } from "react-toastify";
 import "./Css/singleproductcard.css";
 const SingleProductCard = (product) => {
   const { state, dispatch } = useDataContext();
   const navigate = useNavigate();
+  const notify = (msg) => toast(msg);
   const {
     authState: { token },
   } = useAuthContext();
@@ -15,6 +18,24 @@ const SingleProductCard = (product) => {
     state.cartItem.some((dataCart) => dataCart._id === id);
   const checkItemInWishlist = (id) =>
     state.wishlistItem.some((dataWishlist) => dataWishlist._id === id);
+  const cartDebounce = debounce(() => {
+    token
+      ? (cartBtnHandler(product), notify(`"${product.title}" added to cart`))
+      : (notify("You need to Login in first"), navigate("/login"));
+  }, 400);
+  const wishlistDebounce = debounce(
+    () =>
+      token
+        ? (wishlistBtnHandler(product),
+          notify(`"${product.title}" added to wishlist`))
+        : (notify("You neeed to Login in first"), navigate("/login")),
+    400
+  );
+  const cartBtnHandler = (product) => {
+    if (token) {
+      setCartProducts(product, token, dispatch);
+    }
+  };
   const wishlistBtnHandler = (product) => {
     if (token) {
       setWishlistProducts(product, token, dispatch);
@@ -52,13 +73,7 @@ const SingleProductCard = (product) => {
                 <>
                   <button
                     className='btn secondary border-radius-0'
-                    onClick={() =>
-                      token ? (
-                        wishlistBtnHandler(product)
-                      ) : (
-                        <>{navigate("/login")}</>
-                      )
-                    }>
+                    onClick={wishlistDebounce}>
                     Add to Wishlist
                   </button>
                 </>
@@ -78,19 +93,12 @@ const SingleProductCard = (product) => {
                   <button
                     className='btn primary border-radius-0'
                     style={product.inStock ? null : { cursor: "not-allowed" }}
-                    onClick={() =>
-                      token ? (
-                        setCartProducts(product, token, dispatch)
-                      ) : (
-                        <>{navigate("/login")}</>
-                      )
-                    }
+                    onClick={cartDebounce}
                     disabled={product.inStock ? "" : true}>
                     Add to cart
                   </button>
                 </>
               )}
-              {/* <button className='btn primary border-radius-0'>Buy Now</button> */}
             </div>
           </div>
         </div>
