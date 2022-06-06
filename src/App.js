@@ -11,6 +11,7 @@ import WishlistPage from "./pages/WishlistPage";
 import SingleProductPage from "./pages/SingleProductPage";
 import { ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
+import Errorpage from "./components/Utiles/404errorpage";
 function App() {
   return (
     <>
@@ -40,6 +41,7 @@ function App() {
             path='productListing/:productId'
             element={<SingleProductPage />}
           />
+          <Route path='*' element={<Errorpage />} />
         </Routes>
       </div>
     </>
