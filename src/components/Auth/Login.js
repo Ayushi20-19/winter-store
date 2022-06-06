@@ -3,10 +3,11 @@ import React from "react";
 import { useState, useEffect } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import { useAuthContext } from "../../context/auth-context";
-
+import { toast } from "react-toastify";
 import "./auth.css";
 const Login = () => {
   const navigateHome = useNavigate();
+  const notify = (msg) => toast(msg);
   const { authDispatch } = useAuthContext();
   const [userDetail, setUserDetail] = useState({
     email: "",
@@ -36,6 +37,7 @@ const Login = () => {
         localStorage.setItem("token", response.data.encodedToken);
         localStorage.setItem("user", JSON.stringify(response.data));
         navigateHome("/productListing");
+        notify("You are logged in successfully");
         authDispatch({
           type: "LOG_IN",
           payload: {
@@ -46,6 +48,7 @@ const Login = () => {
       }
     } catch (err) {
       console.warn(err);
+      notify("Wrong Credientials entered");
     }
   };
   useEffect(() => {
@@ -58,11 +61,15 @@ const Login = () => {
           <div className='auth-card-wrapper'>
             <div className='auth-card'>
               <div className='heading-auth'>
-                <h1>Login in to Winter</h1>
+                <h1>Login in to Winter Store</h1>
               </div>
               <hr className='auth-card-hr' />
               <div>
-                <form action='' className='auth-content' method='post'>
+                <form
+                  action=''
+                  className='auth-content'
+                  method='post'
+                  onSubmit={submitUserDetail}>
                   <label htmlFor='email'>
                     <h3>Enter Your Email</h3>
                   </label>
@@ -73,6 +80,7 @@ const Login = () => {
                     name='email'
                     value={userDetail.email}
                     onChange={setUserDetailHandler}
+                    required
                   />
                   <label htmlFor='password'>
                     <h3>Enter Your Password</h3>
@@ -84,24 +92,19 @@ const Login = () => {
                     name='password'
                     value={userDetail.password}
                     onChange={setUserDetailHandler}
+                    required
                   />
-                  <a href=''>
-                    <p>Forget Password</p>
-                  </a>
+
                   <button
                     className='btn primary-outline submit-btn'
                     onClick={testCredentials}>
-                    Test Credentials
+                    Add Test Credentials
                   </button>
-                  <button
-                    className='btn primary submit-btn'
-                    onClick={submitUserDetail}>
-                    Login
-                  </button>
+                  <button className='btn primary submit-btn'>Login</button>
                   <hr className='auth-card-hr' />
                 </form>
                 <p>
-                  Not a user yet? <Link to='/signup'>Create your account</Link>
+                  Not a user yet? <Link to='/signup'> Create your account</Link>
                 </p>
               </div>
             </div>

@@ -34,6 +34,9 @@ const ProductsList = () => {
   useEffect(() => {
     window.scrollTo(0, 0);
   }, [currentPage]);
+  useEffect(() => {
+    currentProd.length === 0 && setCurrentPage(1);
+  }, [priceRange]);
 
   return (
     <div>

@@ -70,7 +70,7 @@ const SingleProductCard = (product) => {
                     onClick={() =>
                       token ? navigate("/cart") : navigate("/login")
                     }>
-                    Go to card
+                    Go to cart
                   </button>
                 </>
               ) : (
