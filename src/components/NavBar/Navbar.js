@@ -162,7 +162,28 @@ const Navbar = () => {
             </NavLink>
           </span>
           <span>
-            <NavLink to='/login'>Login/SignUp</NavLink>
+            {token ? (
+              <NavLink
+                to='/login'
+                onClick={clearTokenFromStorage}
+                style={({ isActive }) => {
+                  return {
+                    borderBottom: isActive ? "2px solid #00283b" : "0px",
+                  };
+                }}>
+                Logout
+              </NavLink>
+            ) : (
+              <NavLink
+                to='/login'
+                style={({ isActive }) => {
+                  return {
+                    borderBottom: isActive ? "2px solid #00283b" : "0px",
+                  };
+                }}>
+                Login
+              </NavLink>
+            )}
           </span>
         </sidebar>
       </div>
