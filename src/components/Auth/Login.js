@@ -3,10 +3,11 @@ import React from "react";
 import { useState, useEffect } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import { useAuthContext } from "../../context/auth-context";
-
+import { toast } from "react-toastify";
 import "./auth.css";
 const Login = () => {
   const navigateHome = useNavigate();
+  const notify = (msg) => toast(msg);
   const { authDispatch } = useAuthContext();
   const [userDetail, setUserDetail] = useState({
     email: "",
@@ -36,6 +37,7 @@ const Login = () => {
         localStorage.setItem("token", response.data.encodedToken);
         localStorage.setItem("user", JSON.stringify(response.data));
         navigateHome("/productListing");
+        notify("You are logged in successfully");
         authDispatch({
           type: "LOG_IN",
           payload: {

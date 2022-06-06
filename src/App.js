@@ -9,10 +9,24 @@ import Login from "./components/Auth/Login";
 import CartPage from "./pages/CartPage";
 import WishlistPage from "./pages/WishlistPage";
 import SingleProductPage from "./pages/SingleProductPage";
+import { ToastContainer } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 function App() {
   return (
     <>
       <div className='App'>
+        <ToastContainer
+          position='top-right'
+          autoClose={1500}
+          hideProgressBar={false}
+          newestOnTop={false}
+          closeOnClick
+          rtl={false}
+          pauseOnFocusLoss
+          draggable
+          pauseOnHover
+        />
+
         <Navbar />
         <Routes>
           <Route path='/' element={<HomePage />} />

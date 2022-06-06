@@ -6,12 +6,14 @@ import { setCartProducts } from "../Cart/SetCartProducts";
 import { setWishlistProducts } from "../Wishlist/SetWishlistProducts";
 import { useAuthContext } from "../../context/auth-context";
 import { debounce } from "lodash";
+import { toast } from "react-toastify";
 const ProductCard = (product) => {
   const { state, dispatch } = useDataContext();
   const {
     authState: { token },
   } = useAuthContext();
   const navigate = useNavigate();
+  const notify = (msg) => toast(msg);
 
   const checkItemInCart = (id) =>
     state.cartItem.some((dataCart) => dataCart._id === id);
@@ -19,10 +21,16 @@ const ProductCard = (product) => {
     state.wishlistItem.some((dataWishlist) => dataWishlist._id === id);
 
   const cartDebounce = debounce(() => {
-    token ? cartBtnHandler(product) : navigate("/login");
+    token
+      ? (cartBtnHandler(product), notify(`${product.title} added to cart`))
+      : (notify("You need to Login in first"), navigate("/login"));
   }, 300);
   const wishlistDebounce = debounce(
-    () => (token ? wishlistBtnHandler(product) : <>{navigate("/login")}</>),
+    () =>
+      token
+        ? (wishlistBtnHandler(product),
+          notify(`${product.title} added to wishlist`))
+        : (notify("You neeed to Login in first"), navigate("/login")),
     300
   );
   const cartBtnHandler = (product) => {
