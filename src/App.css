@@ -23,6 +23,9 @@ nav ul li a {
 .cursor-pointer {
   cursor: pointer;
 }
+iframe {
+  pointer-events: none;
+}
 
 .Toastify__toast-container--top-right {
   top: 5em !important;
