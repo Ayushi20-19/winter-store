@@ -28,7 +28,7 @@ const Category = () => {
           <div className='text'>
             <div className='box'>
               <span className='margin-bottom-1'>Gifting Items</span>
-              <p>Collection of varioes products</p>
+              <p>Collection of various products</p>
             </div>
           </div>
         </div>

@@ -22,14 +22,14 @@ const ProductCard = (product) => {
 
   const cartDebounce = debounce(() => {
     token
-      ? (cartBtnHandler(product), notify(`${product.title} added to cart`))
+      ? (cartBtnHandler(product), notify(`"${product.title}" added to cart`))
       : (notify("You need to Login in first"), navigate("/login"));
   }, 300);
   const wishlistDebounce = debounce(
     () =>
       token
         ? (wishlistBtnHandler(product),
-          notify(`${product.title} added to wishlist`))
+          notify(`"${product.title}" added to wishlist`))
         : (notify("You neeed to Login in first"), navigate("/login")),
     300
   );
