@@ -64,9 +64,9 @@ const ProductCard = (product) => {
           <div className='outOfStock'>Out Of Stock</div>
         )}
         <div className='overlay'>
-          <button title='quick view' className='productQuickView '>
+          {/* <button title='quick view' className='productQuickView '>
             <i className='fad fa-search iconCard'></i>
-          </button>
+          </button> */}
 
           {checkItemInWishlist(product._id) ? (
             <>
